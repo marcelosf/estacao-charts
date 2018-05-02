@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Estação Meteorológica - Seção Técnica de Serviços Meteorológicos do Instituto de Astronomia, Geofísica e Ciências Atmosféricas  - Universidade de São Paulo</title>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<link href="js/jqueryui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<script src="js/jqueryui/jquery-ui.min.js"></script>
+
+<link href="estacao_files/style2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/jqueryrange/css/classic-min.css" type="text/css" />
+<script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
+<script src="consulta/charts/js/TSeco.class.js"></script>
+<script src="consulta/charts/js/slider-range.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
+</head>
+
+<body>
+<!--header start -->
+
+<div id="header">
+
+<?php $pagina=8;
+
+  include('MENU_PRINCIPAL.php');
+
+?>
+<img src="meteograma/banner2.png" width="981" height="200" />
+</div>
+<!--header end -->
+<!--body start -->
+<div id="body">
+
+<!--right panel start -->
+<div>
+
+  <?php 
+  
+    include('consulta/charts/TSecoQuery.php');
+    
+  ?>
+
+    <div id="tabs">
+    
+      <ul>
+      
+        <li><a href="#temperatura">Temperatura</a></li>
+
+        <li><a href="#pa">Pressão Atmosférica</a></li>
+
+        <li><a href="#vento">Vento</a></li>
+      
+      </ul>
+    
+      <div id="temperatura">
+    
+      <canvas id="tseco"></canvas>
+
+      <p style="margin-top: 50px;">
+      
+        <div id="slider-range">
+
+        </div>
+      
+      </p>
+
+      <p>
+
+        <div id="data-min"></div>
+
+        <div id="data-max"></div>
+
+      </p>
+
+    </div>
+
+    <div id="pa">
+    
+    
+    </div>
+
+    <div id="vento">
+    
+    
+    </div>
+
+    </div>
+
+    
+
+</div>
+<p class="rightBottom"></p>
+<br class="spacer" />
+</div>
+<!--right panel end -->
+<br class="spacer" />
+</div>
+<!--body end -->
+
+
+<!--footer start -->
+<div id="footer">
+<?php include('RODAPE.php');?>
+<p class="copyright">&copy; Estação Meteorológica  - IAG/USP.</p>
+ <!--footer end -->
+ </div>
+
+ <!--GOOGLE ANALYTICS-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18083865-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  $(function() {
+    $('#tabs').tabs();
+  });
+
+</script>
+</body>
+</html>

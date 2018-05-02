@@ -1,0 +1,1 @@
+jQRangeSlider-5.7.2
