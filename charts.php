@@ -9,7 +9,7 @@
 <script src="js/jqueryui/jquery-ui.min.js"></script>
 
 <link href="estacao_files/style2.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="js/jqueryrange/css/classic-min.css" type="text/css" />
+<link rel="stylesheet" href="consulta/charts/js/jqueryrange/css/classic-min.css" type="text/css" />
 <script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
 <script src="consulta/charts/js/TSeco.class.js"></script>
 <script src="consulta/charts/js/slider-range.js"></script>

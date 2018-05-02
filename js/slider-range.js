@@ -31,6 +31,8 @@ $(document).ready(function () {
 
         getTSecodata(ini, end, function (interval){
 
+            console.log(interval);
+
             let ctx = $('#tseco');
 
             var tSecoChart = getChart(interval.date, interval.data, interval.humidity, ctx);

@@ -51,7 +51,7 @@
         public function getDateInterval ($initialDate, $endDate) 
         {
 
-            $query = "SELECT DATE_FORMAT(data, '%Y-%m-%d') AS dateInterval, AVG(tseco), AVG(tumido) 
+            $query = "SELECT DATE_FORMAT(data, '%Y-%m-%d') AS dateInterval, AVG(tseco) tseco, AVG(tumido) tumido 
             
             FROM $this->tableName 
             
