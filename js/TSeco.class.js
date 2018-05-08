@@ -130,15 +130,9 @@ class TSeco {
 
     }
 
-    setLabels (labels) {
+    destroy (chart) {
 
-        this.labels = labels;
-
-    }
-
-    setData (data) {
-
-        this.data = data;
+        chart.destroy();
 
     }
 

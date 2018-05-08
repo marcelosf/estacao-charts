@@ -4,9 +4,13 @@ $(document).ready(function () {
 
     Temperature.setSlideRange();
 
+    window.chart = {};
+
     $("#slider-range").on("userValuesChanged", function (e, data) {
 
-        Temperature.updateChart(data, data.values.min, data.values.max, '#tseco');
+        Temperature.destroy(window.chart);
+       
+        window.chart = Temperature.updateChart(data, data.values.min, data.values.max, '#tseco');
 
     });
 
@@ -16,7 +20,7 @@ $(document).ready(function () {
 
         let ctx = $('#tseco');
 
-        let tSecoChart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
+        window.chart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
 
     });
 

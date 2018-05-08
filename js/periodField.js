@@ -76,19 +76,17 @@ $(document).ready(function () {
 
         let endDate = $('#end-date-field').val();
 
-        console.log(endDate + ' - ' + initialDate);
-
         Data.loadDataByDateInterval(Data.dateConvert(initialDate), Data.dateConvert(endDate));
 
         Temperature.setSlideRange();
 
-        let dateFileds = Temperature.getDateFields();
+        Temperature.destroy(window.chart);
 
         Temperature.getTSecoData(function (interval) {
 
             let ctx = $('#tseco');
 
-            let tSecoChart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
+            window.chart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
 
         });
 

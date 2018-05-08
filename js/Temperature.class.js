@@ -29,10 +29,10 @@ class Temperature
 
         let ctx = $(context);
 
-        this.getChart(filteredData.date, filteredData.data, filteredData.humidity, ctx);
+        return this.getChart(filteredData.date, filteredData.data, filteredData.humidity, ctx);
 
     }
-    
+
     static loadData () {
 
         let initialDate = $('#initial-date-field').val();
@@ -84,6 +84,12 @@ class Temperature
     
         return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     
+    }
+
+    static destroy (chart) {
+
+        chart.destroy();
+
     }
 
     static getDataHandler () {
