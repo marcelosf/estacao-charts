@@ -43,7 +43,7 @@ class TSeco {
 
                     data: this.dataRight,
 
-                    label: 'Umidade Relativa',
+                    label: 'Umidade Relativa(porc.)',
                     
                     yAxisID: 'right-y-axis',
                     
@@ -80,7 +80,7 @@ class TSeco {
 
                             display: true,
         
-                            labelString: 'Temperatura',
+                            labelString: 'Temperatura(C)',
         
                             position: 'left'
         
@@ -100,7 +100,7 @@ class TSeco {
 
                             display: true,
 
-                            labelString: 'Umidade Relativa',
+                            labelString: 'Umidade Relativa(porc.)',
 
                             position: 'right'
 
