@@ -4,14 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Estação Meteorológica - Seção Técnica de Serviços Meteorológicos do Instituto de Astronomia, Geofísica e Ciências Atmosféricas  - Universidade de São Paulo</title>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<link href="js/jqueryui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-<script src="js/jqueryui/jquery-ui.min.js"></script>
 
 <link href="estacao_files/style2.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="consulta/charts/js/jqueryrange/css/classic-min.css" type="text/css" />
+<link href="js/jqueryui/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/jqueryui/jquery-ui.min.js"></script>
 <script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
 <script src="consulta/charts/js/TSeco.class.js"></script>
+<script src="consulta/charts/js/Data.class.js"></script>
+<script src="consulta/charts/js/periodField.js"></script>
+<script src="consulta/charts/js/Temperature.class.js"></script>
 <script src="consulta/charts/js/slider-range.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -33,6 +37,7 @@
 </div>
 <!--header end -->
 <!--body start -->
+
 <div id="body">
 
 <!--right panel start -->
@@ -57,7 +62,22 @@
       </ul>
     
       <div id="temperatura">
-    
+
+      <p style="margin-top: 50px;">
+        
+        <label for="period-start">Data Inicial:</label>
+
+        <input type="text" id="initial-date-field">
+
+        <label for="period-end">Data Final:</label>
+
+        <input type="text" id="end-date-field">
+
+        <button class="ui-button ui-widget ui-corner-all" id="date-period-button">Ok</button>
+      
+      </p>
+
+
       <canvas id="tseco"></canvas>
 
       <p style="margin-top: 50px;">
@@ -89,10 +109,9 @@
     </div>
 
     </div>
-
     
-
 </div>
+
 <p class="rightBottom"></p>
 <br class="spacer" />
 </div>

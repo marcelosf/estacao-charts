@@ -22,4 +22,14 @@ switch($route) {
 
         break;
 
+    case 'setPeriod':
+
+        $initialDate = $_GET['initialDate'];
+
+        $endDate = $_GET['endDate'];
+
+        Api::setDatePeriod($initialDate, $endDate);
+
+        break;
+
 }
