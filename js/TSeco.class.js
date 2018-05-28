@@ -34,7 +34,7 @@ class TSeco {
 
                     borderColor: 'rgba(255,99,132,1)',
 
-                    borderWidth: 1,
+                    borderWidth: 2,
 
                     yAxisId: 'left-y-axis'
                 },
@@ -51,7 +51,7 @@ class TSeco {
                     
                     borderColor: 'rgba(100,100,132,20)',
                     
-                    borderWidth: 1
+                    borderWidth: 2
         
                 }
             ]
@@ -82,6 +82,8 @@ class TSeco {
         
                             labelString: 'Temperatura(C)',
         
+                            fontSize: 20,
+
                             position: 'left'
         
                         }
@@ -102,13 +104,49 @@ class TSeco {
 
                             labelString: 'Umidade Relativa(porc.)',
 
-                            position: 'right'
+                            position: 'right',
+
+                            fontSize: 20
+
+                        }
+
+                    }
+
+                ],
+
+                xAxes: [
+
+                    {
+
+                        scaleLabel: {
+
+                            fontSize: 20
 
                         }
 
                     }
 
                 ]
+
+            },
+
+            tooltips: {
+
+                titleFontSize: 22,
+
+                bodyFontSize: 20,
+
+                enabled: true
+
+            },
+
+            legend: {
+
+                labels: {
+
+                    fontSize: 20
+
+                }
 
             }
 
