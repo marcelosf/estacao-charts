@@ -1,8 +1,10 @@
 const DATA_INTERVAL_STORAGE = 'dataInterval';
+const PRESSURE_STORAGE = 'pressure';
+const API = 'consulta/charts/loadtseco.php';
 
 class Data {
 
-    static loadDataByDateInterval (initialDate, endDate) {
+    static loadDataByDateInterval (initialDate, endDate, actions) {
 
         let self = this;
 
@@ -10,22 +12,16 @@ class Data {
 
             self.saveData(DATA_INTERVAL_STORAGE, data);
 
+            actions(data);
+
         });
 
     }
     
     static getDataByDateInterval (initialDate, endDate,actions) {
 
-        $.get('consulta/charts/loadtseco.php', {
+        $.get(API, {route: 'dateInterval', initialDate: initialDate, endDate: endDate}).done(function (data){
 
-            route: 'dateInterval',
-    
-            initialDate: initialDate,
-    
-            endDate: endDate
-    
-        }).done(function (data){
-    
             let interval = JSON.parse(data);
             
             actions(interval);
@@ -37,6 +33,30 @@ class Data {
     static dateConvert (date) {
 
         return date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1');
+
+    }
+
+    static loadPressure (date) {
+
+        let self = this;
+
+        this.getPressure(date, function (pressure) {
+
+            self.saveData(PRESSURE_STORAGE, pressure);
+
+        });
+
+    }
+
+    static getPressure (date, actions) {
+
+        $.post(API, {route: 'pressure', date: date}).done(function (data) {
+
+            let pressure = JSON.parse(data);
+
+            actions(pressure);
+
+        });
 
     }
 
@@ -79,6 +99,26 @@ class Data {
         });
 
         return {data: temperature, date: filteredDate, humidity: humidity};
+
+    }
+
+    static filterDataByDateInterval (iniDate, endDate, key, actions) {
+
+        let data = this.getSavedData(key);
+
+        let filtered = data.date.filter(function (value, index) {
+
+            if (value >= iniDate && value <= endDate) {
+
+                actions(data, value, index);
+
+                return true;
+
+            }
+
+        });
+
+        return filtered;    
 
     }
 

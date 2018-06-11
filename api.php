@@ -1,6 +1,7 @@
 <?php
 
-include('TSecoQuery.php');
+include './TSecoQuery.php';
+include './Pressure.php';
 
 class Api 
 {
@@ -26,6 +27,19 @@ class Api
         $dateInterval = $tseco->getDateInterval($initialDate, $endDate);
 
         echo json_encode($dateInterval);
+
+        die();
+
+    }
+
+    public static function getPressure($date)
+    {
+
+        $pressure = new Pressure();
+
+        $dailyPressure = $pressure->getPressure($date);
+
+        echo json_encode($dailyPressure);
 
         die();
 

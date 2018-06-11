@@ -13,9 +13,12 @@
 <script src="js/jqueryui/jquery-ui.min.js"></script>
 <script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
 <script src="consulta/charts/js/TSeco.class.js"></script>
+<script src="consulta/charts/js/PressureChart.class.js"></script>
 <script src="consulta/charts/js/Data.class.js"></script>
 <script src="consulta/charts/js/periodField.js"></script>
+<script src="consulta/charts/js/BaseChart.class.js"></script>
 <script src="consulta/charts/js/Temperature.class.js"></script>
+<script src="consulta/charts/js/Pressure.class.js"></script>
 <script src="consulta/charts/js/slider-range.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -65,13 +68,13 @@
 
       <p style="margin-top: 50px;">
         
-        <label for="period-start">Data Inicial:</label>
+        <label for="temperature-ini-date-field">Data Inicial:</label>
 
-        <input type="text" id="initial-date-field">
+        <input type="text" id="temperature-ini-date-field" class="ini-date-field">
 
-        <label for="period-end">Data Final:</label>
+        <label for="temperature-end-date-field">Data Final:</label>
 
-        <input type="text" id="end-date-field">
+        <input type="text" id="temperature-end-date-field" class="ini-date-field">
 
         <button class="ui-button ui-widget ui-corner-all" id="date-period-button">Ok</button>
       
@@ -82,7 +85,7 @@
 
       <p style="margin-top: 50px;">
       
-        <div id="slider-range">
+        <div id="temperature-slider-range">
 
         </div>
       
@@ -100,6 +103,28 @@
 
     <div id="pa">
     
+      <p style="margin-top: 50px;">
+        
+        <label for="pressure-ini-date-field">Data inicial:</label>
+
+        <input type="text" id="pressure-ini-date-field" class="ini-date-field">
+
+        <label for="pressure-end-date-field">Data final:</label>
+
+        <input type="text" id="pressure-end-date-field" class="end-date-field">
+
+
+        <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
+      
+      </p>
+
+      <canvas id="pressure"></canvas>
+
+      <p style="margin-top: 50px;">
+      
+        <div id="pressure-slider-range"></div>
+    
+      </p>
     
     </div>
 

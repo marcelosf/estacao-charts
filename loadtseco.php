@@ -2,7 +2,7 @@
 
 include('api.php');
 
-$route = $_GET['route'];
+$route = $_GET['route'] ? $_GET['route'] : $_POST['route'];
 
 switch($route) {
 
@@ -32,4 +32,11 @@ switch($route) {
 
         break;
 
+    case 'pressure':
+
+        $date = $_POST['date'];
+
+        Api::getPressure($date);
+
+        break;
 }

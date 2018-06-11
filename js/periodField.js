@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var dateFormat = 'dd/mm/yy';
 
-    periodStart = $('#initial-date-field').datepicker({
+    periodStart = $('.ini-date-field').datepicker({
 
             dateFormat: dateFormat,
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     });
 
-    periodEnd = $('#end-date-field').datepicker({
+    periodEnd = $('.end-date-field').datepicker({
 
             defaultDate: '0d',
 
@@ -70,30 +70,56 @@ $(document).ready(function () {
 
     }
 
+    $('#pressure-button').click(function () {
+
+      let date = $('#pressure-ini-date-field').val();
+
+      Data.loadPressure(Data.dateConvert(date));
+
+      Pressure.destroy(window.pressure);
+
+      Pressure.getStoredData(function (pressure) {
+
+        let ctx = $('#pressure');
+
+        window.pressure = Pressure.getChart(pressure.time, pressure.data, ctx);
+
+      });
+
+    });
+
     $('#date-period-button').click(function () {
 
-        let initialDate = $('#initial-date-field').val();
+        let initialDate = $('#temperature-ini-date-field').val();
 
-        let endDate = $('#end-date-field').val();
+        let endDate = $('#temperature-end-date-field').val();
 
-        Data.loadDataByDateInterval(Data.dateConvert(initialDate), Data.dateConvert(endDate));
+        Data.loadDataByDateInterval(Data.dateConvert(initialDate), Data.dateConvert(endDate), function (data) {
 
-        Temperature.setSlideRange();
+          Temperature.setSlideRange('temperature', {days: 1}, {min: {days: 1}, max: {years: 60}});
 
-        Temperature.destroy(window.chart);
+          Temperature.destroy(window.chart);
 
-        Temperature.getTSecoData(function (interval) {
+          Temperature.getTSecoData(function (interval) {
 
-            let ctx = $('#tseco');
-
-            window.chart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
+              console.log(interval);
+  
+              let ctx = $('#tseco');
+  
+              window.chart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
+  
+          });
 
         });
 
     });
 
-    $('#initial-date-field').datepicker('setDate', '01/01/2011');
+    $('#temperature-ini-date-field').datepicker('setDate', '01/05/2018');
 
-    $('#end-date-field').datepicker('setDate', '01/02/2011');
+    $('#temperature-end-date-field').datepicker('setDate', '20/05/2018');
+
+    $('#pressure-ini-date-field').datepicker('setDate', '23/04/2018');
+
+    $('#pressure-end-date-field').datepicker('setDate', '25/05/2018');
 
 });

@@ -1,24 +1,6 @@
-class Temperature 
+class Temperature extends BaseChart
 {
     
-    static setSlideRange () {
-
-        let dateFields = this.getDateFields();
-
-        $("#slider-range").dateRangeSlider({
-
-            bounds: {
-     
-                 min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate)),
-     
-                 max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate))
-     
-            }
-     
-         });
-
-    }
-
     static updateChart (data, dateIni, dateEnd, context) {
 
         let ini = this.dateFormat(dateIni);
@@ -35,25 +17,13 @@ class Temperature
 
     static loadData () {
 
-        let initialDate = $('#initial-date-field').val();
+        let initialDate = $('#temperature-ini-date-field').val();
 
-        let endDate = $('#end-date-field').val();
+        let endDate = $('#temperature-end-date-field').val();
 
         let data = this.getDataHandler();
 
         data.loadDataByDateInterval(data.dateConvert(initialDate), data.dateConvert(endDate));
-
-    }
-
-    static getDateFields () {
-
-        return {
-
-            minDate: $('#initial-date-field').val(),
-    
-            maxDate: $('#end-date-field').val()
-    
-        }
 
     }
 
@@ -64,37 +34,12 @@ class Temperature
         return tSeco.getChart();
 
     }
-    
-    static dateFormat (date) {
-
-        return date.toISOString();
-
-    }
 
     static getTSecoData (actions) {
 
-        actions(this.getDataHandler().getSavedData(DATA_INTERVAL_STORAGE));
+        let data = this.getDataHandler().getSavedData(DATA_INTERVAL_STORAGE);
 
-    }
-
-    static getDateObject (date)
-    {
-    
-        let dateParts = date.split('-');
-    
-        return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    
-    }
-
-    static destroy (chart) {
-
-        chart.destroy();
-
-    }
-
-    static getDataHandler () {
-
-        return Data;
+        actions(data);
 
     }
 

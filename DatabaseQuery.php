@@ -67,6 +67,27 @@
 
         }
 
+        public function getPressure (array $date) 
+        {   
+
+            $initialDate = $date['ini'] . ' 00:00:00';
+
+            $endDate = $date['end'] . ' 23:59:59';
+
+            $query = "SELECT data, pressao 
+            
+            FROM $this->tableName
+            
+            WHERE data BETWEEN '$initialDate' AND '$endDate';
+
+            ";
+
+            $result = mysqli_query($this->link, $query);
+
+            return $this->fetchArray($result);
+
+        }
+
         public function freeResult ($result) 
         {
 
