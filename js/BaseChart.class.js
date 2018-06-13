@@ -36,9 +36,6 @@ class BaseChart {
      
         };
 
-        console.log(sliderConfig);
-        
-
         $(sliderRangeId).dateRangeSlider(sliderConfig);
 
         $(sliderRangeId).dateRangeSlider('resize');

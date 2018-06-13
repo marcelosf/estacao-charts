@@ -44,7 +44,11 @@ class Data {
 
             self.saveData(PRESSURE_STORAGE, pressure);
 
-            actions(pressure);
+            if (actions) {
+
+                actions(pressure);
+
+            }
 
         });
 
@@ -64,10 +68,7 @@ class Data {
 
     static saveData(key, data) {
 
-        let stringData = JSON.stringify(data);
-
-        console.log('key ' + key + ' data: ' + stringData);
-        
+        let stringData = JSON.stringify(data);        
 
         sessionStorage.setItem(key, stringData);
 
