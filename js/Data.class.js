@@ -1,7 +1,3 @@
-const DATA_INTERVAL_STORAGE = 'dataInterval';
-const PRESSURE_STORAGE = 'pressure';
-const API = 'consulta/charts/loadtseco.php';
-
 class Data {
 
     static loadDataByDateInterval (initialDate, endDate, actions) {
@@ -12,7 +8,11 @@ class Data {
 
             self.saveData(DATA_INTERVAL_STORAGE, data);
 
-            actions(data);
+            if (actions) {
+                
+                actions(data);
+
+            }
 
         });
 
@@ -36,13 +36,15 @@ class Data {
 
     }
 
-    static loadPressure (date) {
+    static loadPressure (date, actions) {
 
         let self = this;
 
         this.getPressure(date, function (pressure) {
 
             self.saveData(PRESSURE_STORAGE, pressure);
+
+            actions(pressure);
 
         });
 
@@ -53,7 +55,7 @@ class Data {
         $.post(API, {route: 'pressure', date: date}).done(function (data) {
 
             let pressure = JSON.parse(data);
-
+            
             actions(pressure);
 
         });
@@ -63,6 +65,9 @@ class Data {
     static saveData(key, data) {
 
         let stringData = JSON.stringify(data);
+
+        console.log('key ' + key + ' data: ' + stringData);
+        
 
         sessionStorage.setItem(key, stringData);
 

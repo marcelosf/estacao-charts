@@ -1,90 +1,42 @@
 $(document).ready(function () {
 
-    var dateFormat = 'dd/mm/yy';
+    let periodField = new PeriodField({
 
-    periodStart = $('.ini-date-field').datepicker({
+      dateFormat: 'dd/mm/yy',
 
-            dateFormat: dateFormat,
+      defaultDate: '0d',
 
-            defaultDate: '0d',
+      minDate: new Date(1950, 1, 1),
 
-            minDate: new Date(1950, 1, 1),
+      maxDate: '0d',
 
-            maxDate: '0d',
+      yearRange: '1950:nn',
 
-            minDate: '01/01/1950',
+      changeMonth: true,
 
-            yearRange: '1950:nn',
+      changeYear: true,
 
-            changeMonth: true,
-
-            changeYear: true,
-
-            numberOfMonths: 1
-
-        }).on( 'change', function() {
-
-          periodEnd.datepicker( "option", "minDate", getDate( this ) );
+      numberOfMonths: 1
 
     });
 
-    periodEnd = $('.end-date-field').datepicker({
-
-            defaultDate: '0d',
-
-            dateFormat: dateFormat,
-
-            maxDate: '0d',
-
-            minDate: '01/01/1950',
-
-            yearRange: '1950:nn',
-
-            changeMonth: true,
-
-            changeYear: true,
-
-            numberOfMonths: 1
-
-    }).on( 'change', function() {
-
-            periodStart.datepicker( 'option', 'maxDate', getDate(this));
-
-    });
- 
-    function getDate( element ) {
-
-      var date;
-
-      try {
-
-        date = $.datepicker.parseDate(dateFormat, element.value);
-
-      } catch( error ) {
-
-        date = null;
-
-      }
- 
-      return date;
-
-    }
+    periodField.setField('.ini-date-field', '.end-date-field');
 
     $('#pressure-button').click(function () {
 
-      let date = $('#pressure-ini-date-field').val();
+      let date = $(PRESSURE_INI_DATE_FIELD).val();
 
-      Data.loadPressure(Data.dateConvert(date));
+      let dateInterval = {ini: Data.dateConvert(date), end: Data.dateConvert(date)};
 
-      Pressure.destroy(window.pressure);
+      Data.loadPressure(dateInterval, function (pressure) {
 
-      Pressure.getStoredData(function (pressure) {
-
+        Pressure.destroy(window.pressure);
+                
         let ctx = $('#pressure');
-
-        window.pressure = Pressure.getChart(pressure.time, pressure.data, ctx);
-
-      });
+  
+        window.pressure = Pressure.getChart(pressure.date, pressure.data, ctx);
+  
+      });    	  
 
     });
 
@@ -96,13 +48,11 @@ $(document).ready(function () {
 
         Data.loadDataByDateInterval(Data.dateConvert(initialDate), Data.dateConvert(endDate), function (data) {
 
-          Temperature.setSlideRange('temperature', {days: 1}, {min: {days: 1}, max: {years: 60}});
+          Temperature.setSlideRange('temperature', {hour: 1}, {min: {hour: 1}, max: {hour: 96}});
 
           Temperature.destroy(window.chart);
 
           Temperature.getTSecoData(function (interval) {
-
-              console.log(interval);
   
               let ctx = $('#tseco');
   
@@ -118,8 +68,8 @@ $(document).ready(function () {
 
     $('#temperature-end-date-field').datepicker('setDate', '20/05/2018');
 
-    $('#pressure-ini-date-field').datepicker('setDate', '23/04/2018');
+    $('#pressure-ini-date-field').datepicker('setDate', '12/05/2018');
 
-    $('#pressure-end-date-field').datepicker('setDate', '25/05/2018');
+    $('#pressure-end-date-field').datepicker('setDate', '12/05/2018');
 
 });

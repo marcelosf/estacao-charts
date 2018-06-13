@@ -77,7 +77,7 @@ class PressureChart {
 
                             display: true,
         
-                            labelString: 'Temperatura(C)',
+                            labelString: 'Pressão Atmosférica(mmHg)',
         
                             fontSize: 20,
 
@@ -99,7 +99,7 @@ class PressureChart {
 
                             display: true,
 
-                            labelString: 'Umidade Relativa(porc.)',
+                            labelString: 'Pressão a Gravidade Normal(hPa)',
 
                             position: 'right',
 

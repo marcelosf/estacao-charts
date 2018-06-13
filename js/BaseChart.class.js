@@ -6,21 +6,21 @@ class BaseChart {
 
         let dateFields = this.getDateFields(id);
 
-        $(sliderRangeId).dateRangeSlider({
+        let sliderConfig = {
 
             bounds: {
      
-                 min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate)),
+                 min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate), false),
      
-                 max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate))
+                 max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate), true)
      
             },
 
             defaultValues: {
 
-                min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate)),
+                min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate), false),
      
-                max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate))
+                max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate), true)
 
             },
 
@@ -34,7 +34,12 @@ class BaseChart {
 
             }
      
-        });
+        };
+
+        console.log(sliderConfig);
+        
+
+        $(sliderRangeId).dateRangeSlider(sliderConfig);
 
         $(sliderRangeId).dateRangeSlider('resize');
 
@@ -50,17 +55,17 @@ class BaseChart {
 
     static getDateFields (id) {
 
+        let dateValues = {};
+
         let iniFieldId = '#' + id + '-ini-date-field';
 
         let endFieldId = '#' + id + '-end-date-field';
 
-        return {
+        dateValues['minDate'] = $(iniFieldId).val();
 
-            minDate: $(iniFieldId).val(),
-    
-            maxDate: $(endFieldId).val()
-    
-        }
+        dateValues['maxDate'] = $(endFieldId).val() ? $(endFieldId).val() : $(iniFieldId).val();
+
+        return dateValues;
  
     }
     
@@ -70,17 +75,25 @@ class BaseChart {
 
     }
 
-    static getStotredData (key, actions) {
+    static getStoredData (key, actions) {
 
         actions(this.getDataHandler().getSavedData(key));
 
     }
 
-    static getDateObject (date) {
+    static getDateObject (date, isEndDate) {
     
         let dateParts = date.split('-');
+
+        let dateObj = {year: dateParts[0], month: dateParts[1] -1, day: dateParts[2]};
     
-        return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+        if(isEndDate) {
+
+            return new Date(dateObj.year, dateObj.month, dateObj.day, 23, 59, 59);
+
+        }
+
+        return new Date(dateObj.year, dateObj.month, dateObj.day);
     
     }
 

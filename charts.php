@@ -12,9 +12,11 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="js/jqueryui/jquery-ui.min.js"></script>
 <script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
+<script src="consulta/charts/js/config.js"></script>
 <script src="consulta/charts/js/TSeco.class.js"></script>
 <script src="consulta/charts/js/PressureChart.class.js"></script>
 <script src="consulta/charts/js/Data.class.js"></script>
+<script src="consulta/charts/js/PeriodField.class.js"></script>
 <script src="consulta/charts/js/periodField.js"></script>
 <script src="consulta/charts/js/BaseChart.class.js"></script>
 <script src="consulta/charts/js/Temperature.class.js"></script>
@@ -105,14 +107,9 @@
     
       <p style="margin-top: 50px;">
         
-        <label for="pressure-ini-date-field">Data inicial:</label>
+        <label for="pressure-ini-date-field">Data:</label>
 
         <input type="text" id="pressure-ini-date-field" class="ini-date-field">
-
-        <label for="pressure-end-date-field">Data final:</label>
-
-        <input type="text" id="pressure-end-date-field" class="end-date-field">
-
 
         <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
       
@@ -165,10 +162,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  $(function() {
-    $('#tabs').tabs();
-  });
 
 </script>
 </body>
