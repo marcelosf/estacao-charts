@@ -34,7 +34,9 @@ class PressureChart {
 
                     borderWidth: 2,
 
-                    yAxisId: 'left-y-axis'
+                    yAxisId: 'left-y-axis',
+
+                    showLines: false
                 },
 
                 {

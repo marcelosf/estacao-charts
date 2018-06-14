@@ -2,11 +2,13 @@ class Pressure extends BaseChart {
 
     static loadData () {
 
-        let date = $(PRESSURE_INI_DATE_FIELD).val();
+        let iniDate = $(PRESSURE_INI_DATE_FIELD).val();
 
-        let convertedDate = Data.dateConvert(date);
+        let endDate = $(PRESSURE_END_DATE_FIELD).val();
 
-        this.getDataHandler().loadPressure({ini: convertedDate, end: convertedDate});
+        let convertediniDate = Data.dateConvert(date);
+
+        this.getDataHandler().loadPressure({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)});
 
     }
 

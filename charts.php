@@ -107,9 +107,13 @@
     
       <p style="margin-top: 50px;">
         
-        <label for="pressure-ini-date-field">Data:</label>
+        <label for="pressure-ini-date-field">Data inicial:</label>
 
         <input type="text" id="pressure-ini-date-field" class="ini-date-field">
+
+        <label for="pressure-end-date-field">Data final:</label>
+
+        <input type="text" id="pressure-end-date-field" class="ini-date-field">
 
         <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
       
