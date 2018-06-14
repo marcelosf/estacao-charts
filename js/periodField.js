@@ -48,7 +48,7 @@ $(document).ready(function () {
 
         Data.loadDataByDateInterval(Data.dateConvert(initialDate), Data.dateConvert(endDate), function (data) {
 
-          Temperature.setSlideRange('temperature', {hour: 1}, {min: {hour: 1}, max: {hour: 96}});
+          Temperature.setSlideRange('temperature', {days: 1}, {min: {days: 1}, max: {days: 96}});
 
           Temperature.destroy(window.chart);
 

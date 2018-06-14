@@ -1,8 +1,5 @@
 <?php
 
-    const DATABASE_NAME = 'estacao';
-    const TABLE_NAME = 'dados';
-
     include('DatabaseQuery.php');
 
     class TSecoQuery
@@ -13,7 +10,7 @@
         public function __construct()
         {
 
-            $this->databaseQuery = new DatabaseQuery('estacao', 'dados');
+            $this->databaseQuery = new DatabaseQuery('estacao', 'temperatura');
 
         }
 
@@ -54,7 +51,7 @@
 
             $humidity = array_map(function ($row){
 
-                return $row['tumido'];
+                return $row['ur'];
 
             }, $interval);
 
