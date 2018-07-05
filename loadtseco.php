@@ -2,6 +2,7 @@
 
 include('api.php');
 
+
 $route = $_GET['route'] ? $_GET['route'] : $_POST['route'];
 
 switch($route) {

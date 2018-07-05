@@ -1,6 +1,8 @@
 <?php
 
     include('DatabaseQuery.php');
+    include('humidity.process.php');
+
 
     class TSecoQuery
     {
@@ -10,7 +12,7 @@
         public function __construct()
         {
 
-            $this->databaseQuery = new DatabaseQuery('estacao', 'temperatura');
+            $this->databaseQuery = new DatabaseQuery('estacao', 'dados');
 
         }
 
@@ -30,7 +32,20 @@
 
             $interval = $this->databaseQuery->getDateInterval($initialDate, $endDate);
 
-            return $this->formatDataArray($interval['data']);
+            $humidity = $this->humidityHandle($interval['data'])->getHumidityData();
+
+            $intervalFormated = $this->formatDataArray($interval['data']);
+
+            $intervalFormated['humidity'] = $humidity;
+
+            return $intervalFormated;
+
+        }
+
+        protected function humidityHandle ($data)
+        {
+
+            return new humidity($data);
 
         }
 
@@ -45,17 +60,11 @@
 
             $date = array_map(function ($row) {
 
-                return $row['dateInterval'];
+                return $row['data_formatada'];
 
             }, $interval);
 
-            $humidity = array_map(function ($row){
-
-                return $row['ur'];
-
-            }, $interval);
-
-            return array('data' => $data, 'date' => $date, 'humidity' => $humidity);
+            return array('data' => $data, 'date' => $date);
 
         }
 

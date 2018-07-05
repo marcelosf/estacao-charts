@@ -1,5 +1,7 @@
 <?php
 
+include('pressure.preprocessing.php');
+
 class Pressure
 {
 
@@ -16,19 +18,28 @@ class Pressure
     {
 
         $pressure = $this->databaseQuery->getPressure($date);
+     
+        $processed = $this->pressureProcessingHandler($pressure['data'])->getPressureData();
 
-        return $this->formatDataArray($pressure['data']);
+        $pressureList = $this->formatDataArray($pressure['data']);
+
+        $pressureList['data'] = $processed;
+
+        return $pressureList;
+
+    }
+
+    protected function pressureProcessingHandler($data)
+    {
+
+        $pressure = new PressurePreProcessing($data);
+
+        return $pressure;
 
     }
 
     protected function formatDataArray ($interval)
     {
-
-        $data = array_map(function ($row) {
-
-            return $row['pressao'];
-
-        }, $interval);
 
         $date = array_map(function ($row) {
 
@@ -36,7 +47,7 @@ class Pressure
 
         }, $interval);
 
-        return array('date' => $date, 'data' => $data);
+        return array('date' => $date);
 
     }
 

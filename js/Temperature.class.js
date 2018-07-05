@@ -39,6 +39,8 @@ class Temperature extends BaseChart
 
         let data = this.getDataHandler().getSavedData(DATA_INTERVAL_STORAGE);
 
+        console.log(DATA_INTERVAL_STORAGE);
+
         actions(data);
 
     }

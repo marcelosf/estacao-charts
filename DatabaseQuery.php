@@ -51,13 +51,18 @@
         public function getDateInterval ($initialDate, $endDate) 
         {
 
-            $query = "SELECT *   
+            $query = "SELECT 
+                date_format(data, '%Y-%m-%d') data_formatada,
+                AVG(temp_bar) temp_bar,
+                AVG(pressao) pressao,
+                AVG(tseco) tseco, 
+                AVG(tumido) tumido
             
             FROM $this->tableName 
             
-            WHERE dateInterval BETWEEN '$initialDate' AND '$endDate'
+            WHERE data BETWEEN '$initialDate' AND '$endDate'
             
-            GROUP BY dateInterval;
+            GROUP BY data_formatada;
             
             ";
 
@@ -74,7 +79,7 @@
 
             $endDate = $date['end'] . ' 23:59:59';
 
-            $query = "SELECT data, pressao 
+            $query = "SELECT data, pressao, temp_bar 
             
             FROM $this->tableName
             

@@ -1,0 +1,115 @@
+<?php
+
+class Humidity {
+
+    protected $pressure;
+
+    protected $tempBar;
+
+    protected $tseco;
+
+    protected $tumido;
+
+    protected $data;
+
+    protected $humidityInterval = array();
+
+    
+    public function __construct($humidityData)
+    {
+
+        $this->data = $humidityData;
+
+    }
+
+    public function getHumidityData() 
+    {
+
+        foreach ($this->data as $d) {
+
+            $this->setVariables($d);
+
+            $this->humidityInterval[] = $this->getHumidity();
+
+        }
+
+        return $this->humidityInterval;
+
+    }
+
+    public function getHumidity()
+    {
+
+        $p0c = $this->getP0c();
+
+        $pNormal = $this->getPNormal($p0c);
+
+        $fcorr = $this->getfcorr($pNormal);
+
+        $ewptw = $this->getEwpt($fcorr);
+
+        $ewptd = $this->getEwptd($ewptw, $pNormal);
+
+        $ewpt = $this->getEwpt($fcorr);
+
+        return ($ewptd / $ewpt) * 100;
+
+    }
+
+    protected function setVariables($variables)
+    {
+
+        $this->pressure = $variables['pressao'];
+
+        $this->tempBar = $variables['temp_bar'];
+
+        $this->tseco = $variables['tseco'];
+
+        $this->tumido = $variables['tumido'];
+
+    }
+
+  
+    protected function getP0c()
+    {
+
+        return $this->pressure * (1 - 0.000163 * $this->tempBar);
+
+    }
+
+    protected function getPNormal($p0c)
+    {
+
+        return ($p0c - 1.3) * 1013.25 / 760;
+
+    }
+
+    protected function getfcorr($pNormal)
+    {
+
+        return 1.0016 + (0.00000315 * $pNormal - (0.074 / $pNormal));
+
+    }
+
+    protected function getEwptw($fcorr)
+    {
+
+        return $fcorr * pow(6.112, (17.62 * $this->tumido / (243.12 + $this->tumido)));
+
+    }
+
+    protected function getEwptd($ewptw, $pNormal)
+    {
+
+        return $ewptw - 0.000653 * (1 + 0.000944 * $this->tumido) * $pNormal * ($this->tseco - $this->tumido);
+
+    }
+
+    protected function getEwpt($fcorr)
+    {
+
+        return $fcorr * pow(6.112, (17.62 * $this->tseco / (243.12 + $this->tseco)));
+
+    }
+
+}
