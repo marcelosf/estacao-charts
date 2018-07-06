@@ -66,6 +66,36 @@ class Data {
 
     }
 
+    static loadWind(date, actions) {
+
+        let self = this;
+
+        this.getWind(date, function (wind) {
+
+            self.saveData(WIND_STORAGE, wind);
+
+            if (actions) {
+
+                actions(wind);
+
+            }
+
+        });
+
+    }
+
+    static getWind (date, actions) {
+
+        $.get(API, {route: 'wind', initialDate: date.ini, endDate: date.end}).done(function(data) {
+
+            let wind = JSON.parse(data);
+
+            actions(wind);
+
+        });
+
+    }
+
     static saveData(key, data) {
 
         let stringData = JSON.stringify(data);        

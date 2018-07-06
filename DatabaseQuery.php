@@ -72,6 +72,20 @@
 
         }
 
+        public function getWind ($initialDate, $endDate)
+        {
+
+            $query = "SELECT data, vento, dir 
+            FROM $this->tableName 
+            WHERE data BETWEEN date('$initialDate') AND date('$endDate')
+            ";
+
+            $result = mysqli_query($this->link, $query);
+
+            return $this->fetchArray($result);
+
+        }
+
         public function getPressure (array $date) 
         {   
 

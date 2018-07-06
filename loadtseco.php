@@ -40,4 +40,15 @@ switch($route) {
         Api::getPressure($date);
 
         break;
+
+    case 'wind':
+
+        $initialDate = $_GET['initialDate'];
+
+        $endDate = $_GET['endDate'];
+
+        Api::getWind($initialDate, $endDate);
+
+        break;
+
 }

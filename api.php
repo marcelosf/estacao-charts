@@ -2,6 +2,7 @@
 
 include './TSecoQuery.php';
 include './Pressure.php';
+include './Wind.php';
 
 class Api 
 {
@@ -40,6 +41,19 @@ class Api
         $dailyPressure = $pressure->getPressure($date);
 
         echo json_encode($dailyPressure);
+
+        die();
+
+    }
+
+    public static function getWind($initialDate, $endDate)
+    {
+
+        $wind = new Wind();
+
+        $windInterval = $wind->getWind($initialDate, $endDate);
+
+        echo json_encode($windInterval);
 
         die();
 

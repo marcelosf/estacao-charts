@@ -22,6 +22,12 @@ $(document).ready(function () {
 
                     break;
 
+                case 2:
+
+                    windInitialize();
+
+                    break;
+
             }
   
         }

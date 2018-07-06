@@ -131,6 +131,25 @@
 
     <div id="vento">
     
+      <p>
+
+        <p style="margin-top: 50px;">
+        
+          <label for="wind-ini-date-field">Data inicial:</label>
+
+          <input type="text" id="wind-ini-date-field" class="ini-date-field">
+
+          <label for="wind-end-date-field">Data final:</label>
+
+          <input type="text" id="wind-end-date-field" class="ini-date-field">
+
+          <button class="ui-button ui-widget ui-corner-all" id="wind-button">Ok</button>
+        
+        </p>
+
+        <canvas id="wind"></canvas>
+
+      </p>
     
     </div>
 
