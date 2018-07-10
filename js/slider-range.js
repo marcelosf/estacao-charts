@@ -88,3 +88,33 @@ function pressureInitialize () {
     });
 
 }
+
+function windInitialize () {
+
+    $(WIND_INI_DATE_FIELD).val('02/07/2018');
+
+    $(WIND_END_DATE_FIELD).val('10/07/2018');
+
+    Wind.loadData();
+
+    Wind.setSlideRange('wind', {days:1}, {min: {days:1}, max: {years: 60}});
+
+    window.wind = {};
+
+    $("#temperature-slider-range").on("userValuesChanged", function (e, data) {
+
+        Wind.destroy(window.wind);
+       
+        window.wind = Wind.updateChart(data, data.values.min, data.values.max, '#wind');
+
+    });
+
+    Wind.getWindData(function (wind) {
+
+        let ctx = $('#wind');
+
+        window.wind = Wind.getChart(wind.date, wind.wind, wind.direction, ctx);
+
+    });
+
+}
