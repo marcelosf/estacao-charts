@@ -72,4 +72,9 @@ $(document).ready(function () {
 
     $('#pressure-end-date-field').datepicker('setDate', '12/05/2018');
 
+    $(WIND_INI_DATE_FIELD).datepicker('setDate', '01/06/2018');
+
+    $(WIND_END_DATE_FIELD).datepicker('setDate', '02/06/2018');
+
+
 });

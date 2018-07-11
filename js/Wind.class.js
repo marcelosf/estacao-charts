@@ -28,6 +28,38 @@ class Wind extends BaseChart {
 
     }
 
+    static updateChart (data, iniDate, endDate, context) {
+
+        let ini = this.dateFormat(iniDate);
+
+        let end = this.dateFormat(endDate);
+
+        let filteredData = this.filterWindDataByDateInterval(ini, end);
+        
+        let ctx = $(context);
+
+        return this.getChart(filteredData.date, filteredData.wind, filteredData.directions, ctx);
+
+    }
+
+    static filterWindDataByDateInterval (iniDate, endDate) {
+
+        let wind = [];
+        
+        let directions = [];
+
+        let filteredDate = Data.filterDataByDateInterval(iniDate, endDate, WIND_STORAGE, function (data, value, index) {
+
+            wind.push(data.wind[index]);
+
+            directions.push(data.direction[index]);
+
+        });
+
+        return {date: filteredDate, wind: wind, directions: directions};
+
+    }
+
     static destroy (chart) {
 
         chart.destroy();
