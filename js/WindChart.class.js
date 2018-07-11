@@ -1,12 +1,12 @@
 class WindChart {
 
-    constructor (labels, dataLeft, dataRight, ctx) {
+    constructor (labels, dataLeft, directions, ctx) {
 
         this.labels = labels;
 
         this.dataLeft = dataLeft;
 
-        this.dataRight = dataRight;
+        this.directions = directions;
 
         this.type = 'line'
 
@@ -16,11 +16,11 @@ class WindChart {
 
         this.options = this._setOptions();
 
-        this.image = this._getDirectionImage();
-
     }
 
     _setData () {
+
+        let self = this;
 
         return {
 
@@ -40,27 +40,12 @@ class WindChart {
 
                     yAxisId: 'left-y-axis',
 
-                },
+                    pointStyle: self._getDirectionImages(this.directions)
 
-                {
-
-                    data: this.dataRight,
-
-                    label: 'Direção',
-                    
-                    yAxisID: 'right-y-axis',
-                    
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    
-                    borderColor: 'rgba(100,100,132,20)',
-                    
-                    borderWidth: 2,
-        
                 }
             ]
 
         }
-
 
     }
 
@@ -91,46 +76,9 @@ class WindChart {
         
                         }
 
-                    },
-
-                    {
-
-                        id: 'right-y-axis',
-
-                        position: 'right',
-
-                        ticks: {beginAtZero: true},
-
-                        scaleLabel: {
-
-                            display: true,
-
-                            labelString: 'Direção (graus)',
-
-                            position: 'right',
-
-                            fontSize: 20
-
-                        }
-
-                    }
-
-                ],
-
-                xAxes: [
-
-                    {
-
-                        scaleLabel: {
-
-                            fontSize: 20
-
-                        }
-
                     }
 
                 ]
-
             },
 
             tooltips: {
@@ -177,13 +125,37 @@ class WindChart {
 
     }
 
-    _getDirectionImage () {
+    _getDirectionImages (directions) {
 
-        let image =  new Image(5,5);
+        let images = [];
 
-        image.src = 'http://www.progression.me/wp-content/uploads/2016/09/blog-reading-the-conditions-arrow.png';
+        let self = this;
 
-        return image;
+        directions.forEach(function(element) {
+
+            let direction = self._createDirection(element);
+
+            images.push(direction);
+
+        });
+
+        return images;
+
+    }
+
+    _createDirection (direction) {
+
+        if (!isNaN(direction)) {
+
+            return 'circle';
+
+        }
+
+        let directionImage = new Image();
+
+        directionImage.src = IMAGES + 'direction_' + direction + '.png';
+
+        return directionImage;
 
     }
 

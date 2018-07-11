@@ -20,9 +20,9 @@ class Wind extends BaseChart {
 
     }
 
-    static getChart (labels, dataLeft, dataRight, ctx) {
+    static getChart (labels, dataLeft, directions, ctx) {
 
-        let windChart = new WindChart(labels, dataLeft, dataRight, ctx);
+        let windChart = new WindChart(labels, dataLeft, directions, ctx);
 
         return windChart.getChart();
 

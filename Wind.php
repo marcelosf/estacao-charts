@@ -35,25 +35,25 @@ class Wind
     protected function formatDataArray ($wind)
     {
 
-        $date = array_map(function ($row) {
+        $dateData = array_map(function ($row) {
 
             return $row['data'];
 
         }, $wind);
 
-        $wind = array_map(function ($row) {
+        $windData = array_map(function ($row) {
 
             return $row['vento'];
 
         }, $wind);
 
-        $direction = array_map(function ($row) {
+        $directionData = array_map(function ($row) {
 
             return $row['dir'];
 
         }, $wind);
 
-        return array('date' => $date, 'wind' => $wind, 'direction' => $direction);
+        return array('date' => $dateData, 'wind' => $windData, 'direction' => $directionData);
 
     }
 

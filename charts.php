@@ -15,12 +15,14 @@
 <script src="consulta/charts/js/config.js"></script>
 <script src="consulta/charts/js/TSeco.class.js"></script>
 <script src="consulta/charts/js/PressureChart.class.js"></script>
+<script src="consulta/charts/js/WindChart.class.js"></script>
 <script src="consulta/charts/js/Data.class.js"></script>
 <script src="consulta/charts/js/PeriodField.class.js"></script>
 <script src="consulta/charts/js/periodField.js"></script>
 <script src="consulta/charts/js/BaseChart.class.js"></script>
 <script src="consulta/charts/js/Temperature.class.js"></script>
 <script src="consulta/charts/js/Pressure.class.js"></script>
+<script src="consulta/charts/js/Wind.class.js"></script>
 <script src="consulta/charts/js/slider-range.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -148,6 +150,12 @@
         </p>
 
         <canvas id="wind"></canvas>
+
+        <p style="margin-top: 50px;">
+      
+          <div id="wind-slider-range"></div>
+    
+         </p>
 
       </p>
     

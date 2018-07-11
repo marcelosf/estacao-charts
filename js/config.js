@@ -9,3 +9,5 @@ const PRESSURE_END_DATE_FIELD = '#pressure-end-date-field';
 
 const WIND_INI_DATE_FIELD = '#wind-ini-date-field';
 const WIND_END_DATE_FIELD = '#wind-end-date-field';
+
+const IMAGES = "http://localhost/consulta/charts/images/";
