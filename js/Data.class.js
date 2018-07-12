@@ -120,6 +120,10 @@ class Data {
 
         let humidity = [];
 
+        let maxTemperature = [];
+
+        let minTemperature = [];
+
         let filteredDate = data.date.filter(function (value, index) {
 
             if (value >= iniDate && value <= endDate) {
@@ -128,13 +132,24 @@ class Data {
 
                 humidity.push(data.humidity[index]);
 
+                maxTemperature.push(data.maxTemperature[index]);
+
+                minTemperature.push(data.minTemperature[index]);
+
                 return true;
 
             }
 
         });
 
-        return {data: temperature, date: filteredDate, humidity: humidity};
+        return {
+            
+            data: temperature,
+            date: filteredDate, 
+            humidity: humidity,
+            maxTemperature: maxTemperature,
+            minTemperature: minTemperature
+        };
 
     }
 

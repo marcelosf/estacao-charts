@@ -1,6 +1,6 @@
 class TSeco {
 
-    constructor (labels, dataLeft, dataRight, ctx) {
+    constructor (labels, dataLeft, dataRight, tMaxMin, ctx) {
 
         this.labels = labels;
 
@@ -8,7 +8,9 @@ class TSeco {
 
         this.dataRight = dataRight;
 
-        this.type = 'line'
+        this.tMaxMin = tMaxMin;
+
+        this.type = 'bar';
 
         this.ctx = ctx;
 
@@ -30,13 +32,15 @@ class TSeco {
 
                     data: this.dataLeft,
 
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: 'rgba(255, 255, 255, 0)',
 
                     borderColor: 'rgba(255,99,132,1)',
 
                     borderWidth: 2,
 
-                    yAxisId: 'left-y-axis'
+                    yAxisId: 'left-y-axis',
+
+                    type: 'line'
                 },
 
                 {
@@ -47,12 +51,46 @@ class TSeco {
                     
                     yAxisID: 'right-y-axis',
                     
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: 'rgba(255, 255, 255, 0)',
                     
                     borderColor: 'rgba(100,100,132,20)',
                     
-                    borderWidth: 2
+                    borderWidth: 2,
+
+                    type: 'line'
         
+                },
+
+                {
+
+                    data: this.tMaxMin.tmax,
+
+                    label: 'Temperatura Máxima',
+
+                    yAxisID: 'left-y-axis',
+
+                    backgroundColor: 'rgba(88, 120, 249, 0.5)',
+
+                    borderWidth: 2,
+
+                    type: 'bar'
+
+                },
+                 
+                {
+
+                    data: this.tMaxMin.tmin,
+
+                    label: 'Temperatura Mínima',
+
+                    yAxisID: 'left-y-axis',
+
+                    backgroundColor: 'rgba(43, 133, 5, 0.5)',
+
+                    borderWidth: 2,
+
+                    type: 'bar'
+
                 }
             ]
 
@@ -110,7 +148,7 @@ class TSeco {
 
                         }
 
-                    }
+                    },
 
                 ],
 

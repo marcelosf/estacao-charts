@@ -9,9 +9,11 @@ class Temperature extends BaseChart
 
         let filteredData = this.getDataHandler().filterDataByDate(ini, end);
 
+        let tMaxMin = {tmax: filteredData.maxTemperature, tmin: filteredData.minTemperature}
+
         let ctx = $(context);
 
-        return this.getChart(filteredData.date, filteredData.data, filteredData.humidity, ctx);
+        return this.getChart(filteredData.date, filteredData.data, filteredData.humidity, tMaxMin,  ctx);
 
     }
 
@@ -35,9 +37,9 @@ class Temperature extends BaseChart
 
     }
 
-    static getChart (labels, dataLeft, dataRight, ctx) {
+    static getChart (labels, dataLeft, dataRight, tMaxMin, ctx) {
 
-        let tSeco = new TSeco(labels, dataLeft, dataRight, ctx);
+        let tSeco = new TSeco(labels, dataLeft, dataRight, tMaxMin, ctx);
 
         return tSeco.getChart();
 

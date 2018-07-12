@@ -51,7 +51,9 @@ function temperatureInitialize () {
         
         let ctx = $('#tseco');
 
-        window.temperature = Temperature.getChart(temperature.date, temperature.data, temperature.humidity, ctx);
+        let tMaxMin = {tmax: temperature.maxTemperature, tmin: temperature.minTemperature};
+
+        window.temperature = Temperature.getChart(temperature.date, temperature.data, temperature.humidity, tMaxMin, ctx);
 
     });
 
