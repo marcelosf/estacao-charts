@@ -96,7 +96,11 @@ class BaseChart {
 
     static destroy (chart) {
 
-        chart.destroy();
+        if (typeof(chart && chart.destroy) !== 'undefined') {
+
+            chart.destroy();
+
+        }
 
     }
 

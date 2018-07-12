@@ -15,7 +15,7 @@ class Temperature extends BaseChart
 
     }
 
-    static loadData () {
+    static loadData (actions) {
 
         let initialDate = $('#temperature-ini-date-field').val();
 
@@ -23,7 +23,15 @@ class Temperature extends BaseChart
 
         let data = this.getDataHandler();
 
-        data.loadDataByDateInterval(data.dateConvert(initialDate), data.dateConvert(endDate));
+        data.loadDataByDateInterval(data.dateConvert(initialDate), data.dateConvert(endDate), function (temperature) {
+
+            if (actions) {
+
+                actions(temperature);
+
+            }
+
+        });
 
     }
 

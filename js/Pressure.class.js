@@ -1,29 +1,20 @@
 class Pressure extends BaseChart {
 
-    static loadData () {
+    static loadData (actions) {
 
         let iniDate = $(PRESSURE_INI_DATE_FIELD).val();
 
         let endDate = $(PRESSURE_END_DATE_FIELD).val();
 
-        let convertediniDate = Data.dateConvert(iniDate);
+        this.getDataHandler().loadPressure({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)}, function (pressure) {
 
-        this.getDataHandler().loadPressure({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)});
+            if (actions) {
 
-    }
+                actions(pressure);  
 
-    static updateChart (data, iniDate, endDate) {
+            }
 
-        let ini = this.dateFormat(iniDate);
-
-        let end = this.dateFormat(endDate);
-
-        let filteredData = this.filterPressureDataByDateInterval(ini, end);
-
-        console.log(filteredData);
-        
-
-        return this.getChart(filteredData.date, filteredData.pressure, PRESSURE_STORAGE);
+        });
 
     }
 
@@ -32,16 +23,6 @@ class Pressure extends BaseChart {
         let pressureChart = new PressureChart(labels, data, ctx);
         
         return pressureChart.getChart();
-
-    }
-
-    static getPressureData (actions) {
-
-        this.getStoredData(PRESSURE_STORAGE, function (pressure) {
-
-            actions(pressure);
-
-        });
 
     }
 

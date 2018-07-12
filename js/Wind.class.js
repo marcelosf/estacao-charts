@@ -1,6 +1,6 @@
 class Wind extends BaseChart {
 
-    static loadData () {
+    static loadData (actions) {
 
         let iniDate = $(WIND_INI_DATE_FIELD).val();
 
@@ -8,15 +8,15 @@ class Wind extends BaseChart {
 
         let convertediniDate = Data.dateConvert(iniDate);
 
-        this.getDataHandler().loadWind({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)});
+        this.getDataHandler().loadWind({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)}, function (wind) {
 
-    }
+            if (actions) {
 
-    static getWindData (actions) {
+                actions(wind);
 
-        let data = this.getDataHandler().getSavedData(WIND_STORAGE);
+            }
 
-        actions(data);
+        });
 
     }
 
@@ -25,20 +25,6 @@ class Wind extends BaseChart {
         let windChart = new WindChart(labels, dataLeft, directions, ctx);
 
         return windChart.getChart();
-
-    }
-
-    static updateChart (data, iniDate, endDate, context) {
-
-        let ini = this.dateFormat(iniDate);
-
-        let end = this.dateFormat(endDate);
-
-        let filteredData = this.filterWindDataByDateInterval(ini, end);
-        
-        let ctx = $(context);
-
-        return this.getChart(filteredData.date, filteredData.wind, filteredData.directions, ctx);
 
     }
 
@@ -60,10 +46,5 @@ class Wind extends BaseChart {
 
     }
 
-    static destroy (chart) {
-
-        chart.destroy();
-
-    }
 
 }

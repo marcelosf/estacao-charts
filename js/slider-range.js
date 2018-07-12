@@ -34,36 +34,34 @@ $(document).ready(function () {
   
     });
 
-    $('#wind-button').click(function () {
+    $('#wind-button').click(function () { windInitialize(); });
 
-        windInitialize();
+    $('#pressure-button').click(function () { pressureInitialize() });
 
-    });
+    $('#date-period-button').click(function () { temperatureInitialize() });
 
 });
 
 
 function temperatureInitialize () {
 
-    Temperature.loadData();
+    Temperature.loadData(function (temperature) {
 
-    Temperature.setSlideRange('temperature', {days:1}, {min: {days: 1}, max: {years: 60}});
+        Temperature.destroy(window.temperature);
+        
+        let ctx = $('#tseco');
 
-    window.chart = {};
-
-    $("#temperature-slider-range").on("userValuesChanged", function (e, data) {
-
-        Temperature.destroy(window.chart);
-       
-        window.chart = Temperature.updateChart(data, data.values.min, data.values.max, '#tseco');
+        window.temperature = Temperature.getChart(temperature.date, temperature.data, temperature.humidity, ctx);
 
     });
 
-    Temperature.getTSecoData(function (interval) {
+    Temperature.setSlideRange('temperature', {days:1}, {min: {days: 1}, max: {years: 60}});
 
-        let ctx = $('#tseco');
+    $("#temperature-slider-range").on("userValuesChanged", function (e, data) {
 
-        window.chart = Temperature.getChart(interval.date, interval.data, interval.humidity, ctx);
+        Temperature.destroy(window.temperature);
+       
+        window.temperature = Temperature.updateChart(data, data.values.min, data.values.max, '#tseco');
 
     });
 
@@ -71,11 +69,19 @@ function temperatureInitialize () {
 
 function pressureInitialize () {
 
-    Pressure.loadData();
+    Pressure.loadData(function (pressure) {
+
+        Pressure.destroy(window.pressure);
+        
+        let ctx = $('#pressure');
+
+        window.pressure = Pressure.getChart(pressure.date, pressure.data, ctx);
+
+    });
 
     // Pressure.setSlideRange('pressure', {hour: 1}, {min: {hour: 1}, max: {hour: 23}});
 
-    window.pressure = {};
+    // window.pressure = {};
 
     // $("#pressure-slider-range").on("userValuesChanged", function (e, data) {
 
@@ -85,37 +91,27 @@ function pressureInitialize () {
 
     // });
 
-    Pressure.getPressureData(function (pressure) {
-
-        let ctx = $('#pressure');
-
-        window.pressure = Pressure.getChart(pressure.date, pressure.data, ctx);
-
-    });
-
 }
 
 function windInitialize () {
 
-    Wind.loadData();
+    Wind.loadData(function (wind) {
+
+        Wind.destroy(window.wind);
+        
+        let ctx = $('#wind');
+
+        window.wind = Wind.getChart(wind.date, wind.wind, wind.direction, ctx);
+
+    });
 
     Wind.setSlideRange('wind', {days:1}, {min: {days:1}, max: {years: 60}});
-
-    window.wind = {};
 
     $("#wind-slider-range").on("userValuesChanged", function (e, data) {
 
         Wind.destroy(window.wind);
        
         window.wind = Wind.updateChart(data, data.values.min, data.values.max, '#wind');
-
-    });
-
-    Wind.getWindData(function (wind) {
-
-        let ctx = $('#wind');
-
-        window.wind = Wind.getChart(wind.date, wind.wind, wind.direction, ctx);
 
     });
 
