@@ -56,7 +56,9 @@
                 AVG(temp_bar) temp_bar,
                 AVG(pressao) pressao,
                 AVG(tseco) tseco, 
-                AVG(tumido) tumido
+                AVG(tumido) tumido,
+                MAX(tseco) tmax,
+                MIN(tseco) tmin
             
             FROM $this->tableName 
             

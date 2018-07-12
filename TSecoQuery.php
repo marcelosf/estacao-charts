@@ -64,7 +64,26 @@
 
             }, $interval);
 
-            return array('data' => $data, 'date' => $date);
+            $minTemperature = array_map(function ($row) {
+
+                return $row['tmin'];
+
+            }, $interval);
+
+            $maxTemperature = array_map(function ($row) {
+
+                return $row['tmax'];
+
+            }, $interval);
+
+
+            return array(
+                
+                'data' => $data,
+                'date' => $date, 
+                'minTemperature' => $minTemperature, 
+                'maxTemperature' => $maxTemperature
+            );
 
         }
 

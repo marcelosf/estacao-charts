@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     $('#pressure-button').click(function () { pressureInitialize() });
 
-    $('#date-period-button').click(function () { temperatureInitialize() });
+    $('#date-period-button').click(function () { temperatureInitialize(); });
 
 });
 
