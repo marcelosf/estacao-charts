@@ -3,6 +3,7 @@
 include './TSecoQuery.php';
 include './Pressure.php';
 include './Wind.php';
+include './Precipitation.php';
 
 class Api 
 {
@@ -54,6 +55,19 @@ class Api
         $windInterval = $wind->getWind($initialDate, $endDate);
 
         echo json_encode($windInterval);
+
+        die();
+
+    }
+
+    public static function getPrecipitation($initialDate, $endDate) 
+    {
+
+        $precipitation = new Precipitation();
+
+        $precipitationInterval = $precipitation->getPrecipitation($initialDate, $endDate);
+
+        echo json_encode($precipitationInterval);
 
         die();
 

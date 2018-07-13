@@ -51,4 +51,14 @@ switch($route) {
 
         break;
 
+    case 'precipitation':
+
+        $initialDate = $_GET['initialDate'];
+
+        $endDate = $_GET['endDate'];
+
+        Api::getPrecipitation($initialDate, $endDate);
+
+        break;
+
 }

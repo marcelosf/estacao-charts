@@ -74,6 +74,21 @@
 
         }
 
+        public function getPrecipitation ($initialDate, $endDate) 
+        {
+
+            $query = "SELECT date_format(DATA, '%Y-%m-%d') date, AVG(prec) precipitation, AVG(duration) duration
+            FROM $this->tableName 
+            WHERE DATA BETWEEN '$initialDate' AND '$endDate' 
+            GROUP BY date
+            ";
+
+            $result = mysqli_query($this->link, $query);
+
+            return $this->fetchArray($result);
+
+        }
+
         public function getWind ($initialDate, $endDate)
         {
 
