@@ -36,6 +36,14 @@ class Data {
 
     }
 
+    static dateFormat (date, full) {
+
+        let replace = full ? '$3/$2/$1$4' : '$3/$2/$1';
+
+        return date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, replace);
+
+    }
+
     static loadPressure (date, actions) {
 
         let self = this;

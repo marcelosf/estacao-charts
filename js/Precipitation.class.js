@@ -22,7 +22,9 @@ class Precipitation extends BaseChart {
 
     static getChart (labels, precipitation, duration, ctx) {
 
-        let precipitationChart = new PrecipitationChart(labels, precipitation, duration, ctx);
+        let formattedDates = this.dateToBRFormat(labels, false);
+
+        let precipitationChart = new PrecipitationChart(formattedDates, precipitation, duration, ctx);
 
         return precipitationChart.getChart();
 

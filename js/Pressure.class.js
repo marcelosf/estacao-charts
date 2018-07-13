@@ -19,8 +19,10 @@ class Pressure extends BaseChart {
     }
 
     static getChart (labels, data, ctx) {
-              
-        let pressureChart = new PressureChart(labels, data, ctx);
+        
+        let formattedDates = this.dateToBRFormat(labels, true);
+
+        let pressureChart = new PressureChart(formattedDates, data, ctx);
         
         return pressureChart.getChart();
 

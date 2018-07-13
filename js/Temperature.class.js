@@ -39,7 +39,9 @@ class Temperature extends BaseChart
 
     static getChart (labels, dataLeft, dataRight, tMaxMin, ctx) {
 
-        let tSeco = new TSeco(labels, dataLeft, dataRight, tMaxMin, ctx);
+        let formattedDates = this.dateToBRFormat(labels, false);
+
+        let tSeco = new TSeco(formattedDates, dataLeft, dataRight, tMaxMin, ctx);
 
         return tSeco.getChart();
 
@@ -48,8 +50,6 @@ class Temperature extends BaseChart
     static getTSecoData (actions) {
 
         let data = this.getDataHandler().getSavedData(DATA_INTERVAL_STORAGE);
-
-        console.log(DATA_INTERVAL_STORAGE);
 
         actions(data);
 

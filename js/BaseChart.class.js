@@ -72,6 +72,26 @@ class BaseChart {
 
     }
 
+    static dateToBRFormat (dates, full) {
+
+        dates = dates ? dates : [];
+
+        let formattedDates = [];
+
+        let self = this;
+
+        dates.forEach(function (element) {
+            
+            let formatted = self.getDataHandler().dateFormat(element, full);
+
+            formattedDates.push(formatted);
+
+        });
+
+        return formattedDates;
+
+    }
+
     static getStoredData (key, actions) {
 
         actions(this.getDataHandler().getSavedData(key));

@@ -22,7 +22,9 @@ class Wind extends BaseChart {
 
     static getChart (labels, dataLeft, directions, ctx) {
 
-        let windChart = new WindChart(labels, dataLeft, directions, ctx);
+        let labelsFormatted = this.dateToBRFormat(labels, true);
+
+        let windChart = new WindChart(labelsFormatted, dataLeft, directions, ctx);
 
         return windChart.getChart();
 
@@ -45,6 +47,21 @@ class Wind extends BaseChart {
         return {date: filteredDate, wind: wind, directions: directions};
 
     }
+
+    static updateChart (data, iniDate, endDate, context) {
+
+        let ini = this.dateFormat(iniDate);
+
+        let end = this.dateFormat(endDate);
+
+        let filteredData = this.filterWindDataByDateInterval(ini, end);
+        
+        let ctx = $(context);
+
+        return this.getChart(filteredData.date, filteredData.wind, filteredData.directions, ctx);
+
+    }
+
 
 
 }
