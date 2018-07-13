@@ -15,4 +15,4 @@ const PRECIPITATION_INI_DATE_FIELD = '#precipitation-ini-date-field';
 const PRECIPITATION_END_DATE_FIELD = '#precipitation-end-date-field';
 
 
-const IMAGES = "http://localhost/consulta/charts/images/";
+const IMAGES = "http://10.60.0.57/consulta/charts/images/";

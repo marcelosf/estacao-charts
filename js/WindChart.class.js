@@ -127,6 +127,8 @@ class WindChart {
 
     _getDirectionImages (directions) {
 
+        directions = directions ? directions : [];
+
         let images = [];
 
         let self = this;

@@ -82,7 +82,7 @@
 
         <label for="temperature-end-date-field">Data Final:</label>
 
-        <input type="text" id="temperature-end-date-field" class="ini-date-field">
+        <input type="text" id="temperature-end-date-field" class="end-date-field">
 
         <button class="ui-button ui-widget ui-corner-all" id="date-period-button">Ok</button>
       
@@ -119,7 +119,7 @@
 
         <label for="pressure-end-date-field">Data final:</label>
 
-        <input type="text" id="pressure-end-date-field" class="ini-date-field">
+        <input type="text" id="pressure-end-date-field" class="end-date-field">
 
         <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
       
@@ -147,7 +147,7 @@
 
           <label for="wind-end-date-field">Data final:</label>
 
-          <input type="text" id="wind-end-date-field" class="ini-date-field">
+          <input type="text" id="wind-end-date-field" class="end-date-field">
 
           <button class="ui-button ui-widget ui-corner-all" id="wind-button">Ok</button>
         
@@ -177,7 +177,7 @@
 
           <label for="precipitation-end-date-field">Data final:</label>
 
-          <input type="text" id="precipitation-end-date-field" class="ini-date-field">
+          <input type="text" id="precipitation-end-date-field" class="end-date-field">
 
           <button class="ui-button ui-widget ui-corner-all" id="precipitation-button">Ok</button>
         
