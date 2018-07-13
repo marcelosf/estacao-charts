@@ -28,6 +28,12 @@ $(document).ready(function () {
 
                     break;
 
+                case 3:
+
+                    precipitationInitialize();
+
+                    break;
+
             }
   
         }
@@ -39,6 +45,8 @@ $(document).ready(function () {
     $('#pressure-button').click(function () { pressureInitialize() });
 
     $('#date-period-button').click(function () { temperatureInitialize(); });
+
+    $('#precipitation-button').click(function () { precipitationInitialize(); });
 
 });
 
@@ -114,6 +122,30 @@ function windInitialize () {
         Wind.destroy(window.wind);
        
         window.wind = Wind.updateChart(data, data.values.min, data.values.max, '#wind');
+
+    });
+
+}
+
+function precipitationInitialize () {
+
+    Precipitation.loadData(function (precipitation) {
+
+        console.log(precipitation);
+
+        Precipitation.destroy(window.precipitation);
+
+        let ctx = $('#prec');
+
+        window.precipitation = Precipitation.getChart(precipitation.date, precipitation.precipitation, precipitation.duration, ctx);
+
+    });
+
+    $("#precipitation-slider-range").on("userValuesChanged", function (e, data) {
+
+        Precipitation.destroy(window.precipitation);
+       
+        window.precipitation = Precipitation.updateChart(data, data.values.min, data.values.max, '#prec');
 
     });
 

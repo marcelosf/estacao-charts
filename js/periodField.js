@@ -34,5 +34,9 @@ $(document).ready(function () {
 
     $(WIND_END_DATE_FIELD).datepicker('setDate', '02/06/2018');
 
+    $(PRECIPITATION_INI_DATE_FIELD).datepicker('setDate', '01/06/2018');
+
+    $(PRECIPITATION_END_DATE_FIELD).datepicker('setDate', '02/06/2018');
+
 
 });

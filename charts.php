@@ -16,6 +16,7 @@
 <script src="consulta/charts/js/TSeco.class.js"></script>
 <script src="consulta/charts/js/PressureChart.class.js"></script>
 <script src="consulta/charts/js/WindChart.class.js"></script>
+<script src="consulta/charts/js/PrecipitationChart.js"></script>
 <script src="consulta/charts/js/Data.class.js"></script>
 <script src="consulta/charts/js/PeriodField.class.js"></script>
 <script src="consulta/charts/js/periodField.js"></script>
@@ -23,6 +24,7 @@
 <script src="consulta/charts/js/Temperature.class.js"></script>
 <script src="consulta/charts/js/Pressure.class.js"></script>
 <script src="consulta/charts/js/Wind.class.js"></script>
+<script src="consulta/charts/js/Precipitation.class.js"></script>
 <script src="consulta/charts/js/slider-range.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -65,6 +67,8 @@
         <li><a href="#pa">Pressão Atmosférica</a></li>
 
         <li><a href="#vento">Vento</a></li>
+
+        <li><a href="#precipitation">Precipitação</a></li>
       
       </ul>
     
@@ -157,6 +161,36 @@
     
          </p>
 
+      </p>
+    
+    </div>
+
+    <div id="precipitation">
+    
+      <p>
+      
+        <p style="margin-top: 50px;">
+        
+          <label for="precipitation-ini-date-field">Data inicial:</label>
+
+          <input type="text" id="precipitation-ini-date-field" class="ini-date-field">
+
+          <label for="precipitation-end-date-field">Data final:</label>
+
+          <input type="text" id="precipitation-end-date-field" class="ini-date-field">
+
+          <button class="ui-button ui-widget ui-corner-all" id="precipitation-button">Ok</button>
+        
+        </p>
+
+        <canvas id="prec"></canvas>        
+
+        <p style="margin-top: 50px;">
+        
+          <div id="precipitation-slider-range"></div>
+
+        </p>
+      
       </p>
     
     </div>

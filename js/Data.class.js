@@ -96,6 +96,36 @@ class Data {
 
     }
 
+    static loadPrecipitation (date, actions) {
+
+        let self = this;
+
+        this.getPrecipitation(date, function (precipitation) {
+
+            self.saveData(PRECIPITATION_STORAGE, precipitation);
+
+            if (actions) {
+
+                actions(precipitation);
+
+            }
+
+        });
+
+    }
+
+    static getPrecipitation (date, actions) {
+
+        $.get(API, {route: 'precipitation', initialDate: date.ini, endDate: date.end}).done(function(data) {
+
+            let precipitation = JSON.parse(data);
+
+            actions(precipitation);
+
+        });
+
+    }
+
     static saveData(key, data) {
 
         let stringData = JSON.stringify(data);        
