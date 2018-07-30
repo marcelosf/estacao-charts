@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    Chart.defaults.global.defaultFontSize = CHART_LABLE_SIZE;
+
     temperatureInitialize();
 
     $('#tabs').tabs({

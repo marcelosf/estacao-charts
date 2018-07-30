@@ -14,5 +14,7 @@ const WIND_END_DATE_FIELD = '#wind-end-date-field';
 const PRECIPITATION_INI_DATE_FIELD = '#precipitation-ini-date-field';
 const PRECIPITATION_END_DATE_FIELD = '#precipitation-end-date-field';
 
+const CHART_LABLE_SIZE = 18;
+
 
 const IMAGES = "http://10.60.0.57/consulta/charts/images/";
