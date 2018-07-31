@@ -28,7 +28,7 @@ class TSeco {
 
             datasets: [
                 {
-                    label: 'Temperatura de Bulbo Seco',
+                    label: 'Temperatura de Bulbo Seco (ºC)',
 
                     data: this.dataLeft,
 
@@ -65,7 +65,7 @@ class TSeco {
 
                     data: this.tMaxMin.tmax,
 
-                    label: 'Temperatura Máxima',
+                    label: 'Temperatura Máxima (ºC)',
 
                     yAxisID: 'left-y-axis',
 
@@ -81,7 +81,7 @@ class TSeco {
 
                     data: this.tMaxMin.tmin,
 
-                    label: 'Temperatura Mínima',
+                    label: 'Temperatura Mínima (ºC)',
 
                     yAxisID: 'left-y-axis',
 

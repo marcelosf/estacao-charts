@@ -26,7 +26,7 @@ class PrecipitationChart {
 
             datasets: [
                 {
-                    label: 'Precipitação',
+                    label: 'Precipitação (mm)',
 
                     data: this.precipitation,
 
@@ -85,7 +85,7 @@ class PrecipitationChart {
 
                             display: true,
         
-                            labelString: 'Precipitação',
+                            labelString: 'Precipitação (mm)',
         
                             fontSize: 20,
 
