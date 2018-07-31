@@ -1,6 +1,6 @@
 <?php
 
-    include('/var/www/files/library/DBMysqliConnect.php');
+    include('../../files/library/DBMysqliConnect.php');
 
     class DatabaseQuery
     {
