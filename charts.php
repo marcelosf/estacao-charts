@@ -59,7 +59,7 @@
   ?>
 
     <div id="tabs">
-    
+
       <ul>
       
         <li><a href="#temperatura">Temperatura</a></li>
@@ -75,19 +75,30 @@
       <div id="temperatura">
 
       <p style="margin-top: 50px;">
-        
-        <label for="temperature-ini-date-field">Data Inicial:</label>
 
-        <input type="text" id="temperature-ini-date-field" class="ini-date-field">
+        <fieldset style="padding: 20px;">
 
-        <label for="temperature-end-date-field">Data Final:</label>
+          <legend>
 
-        <input type="text" id="temperature-end-date-field" class="end-date-field">
+            Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados
 
-        <button class="ui-button ui-widget ui-corner-all" id="date-period-button">Ok</button>
+          </legend>
+
+          <label for="temperature-ini-date-field">Data Inicial:</label>
+
+          <input type="text" id="temperature-ini-date-field" class="ini-date-field">
+
+          <label for="temperature-end-date-field">Data Final:</label>
+
+          <input type="text" id="temperature-end-date-field" class="end-date-field">
+
+          <button class="ui-button ui-widget ui-corner-all" id="date-period-button">Ok</button>
+
+        </fieldset>
       
       </p>
 
+      <br>
 
       <canvas id="tseco"></canvas>
 
@@ -112,16 +123,22 @@
     <div id="pa">
     
       <p style="margin-top: 50px;">
-        
-        <label for="pressure-ini-date-field">Data inicial:</label>
 
-        <input type="text" id="pressure-ini-date-field" class="ini-date-field">
+        <fieldset style="padding: 20px;">
 
-        <label for="pressure-end-date-field">Data final:</label>
+          <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados</legend>
 
-        <input type="text" id="pressure-end-date-field" class="end-date-field">
+          <label for="pressure-ini-date-field">Data inicial:</label>
 
-        <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
+          <input type="text" id="pressure-ini-date-field" class="ini-date-field">
+
+          <label for="pressure-end-date-field">Data final:</label>
+
+          <input type="text" id="pressure-end-date-field" class="end-date-field">
+
+          <button class="ui-button ui-widget ui-corner-all" id="pressure-button">Ok</button>
+
+        </fieldset>
       
       </p>
 
@@ -140,16 +157,22 @@
       <p>
 
         <p style="margin-top: 50px;">
-        
-          <label for="wind-ini-date-field">Data inicial:</label>
 
-          <input type="text" id="wind-ini-date-field" class="ini-date-field">
+          <fieldset style="padding: 20px;">
 
-          <label for="wind-end-date-field">Data final:</label>
+            <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados</legend>
+            
+            <label for="wind-ini-date-field">Data inicial:</label>
 
-          <input type="text" id="wind-end-date-field" class="end-date-field">
+            <input type="text" id="wind-ini-date-field" class="ini-date-field">
 
-          <button class="ui-button ui-widget ui-corner-all" id="wind-button">Ok</button>
+            <label for="wind-end-date-field">Data final:</label>
+
+            <input type="text" id="wind-end-date-field" class="end-date-field">
+
+            <button class="ui-button ui-widget ui-corner-all" id="wind-button">Ok</button>
+
+          </fieldset>
         
         </p>
 
@@ -170,16 +193,22 @@
       <p>
       
         <p style="margin-top: 50px;">
-        
-          <label for="precipitation-ini-date-field">Data inicial:</label>
 
-          <input type="text" id="precipitation-ini-date-field" class="ini-date-field">
+          <fieldset style="padding: 20px;">
 
-          <label for="precipitation-end-date-field">Data final:</label>
+            <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados</legend>
 
-          <input type="text" id="precipitation-end-date-field" class="end-date-field">
+            <label for="precipitation-ini-date-field">Data inicial:</label>
 
-          <button class="ui-button ui-widget ui-corner-all" id="precipitation-button">Ok</button>
+            <input type="text" id="precipitation-ini-date-field" class="ini-date-field">
+
+            <label for="precipitation-end-date-field">Data final:</label>
+
+            <input type="text" id="precipitation-end-date-field" class="end-date-field">
+
+            <button class="ui-button ui-widget ui-corner-all" id="precipitation-button">Ok</button>
+
+          </fieldset>
         
         </p>
 
