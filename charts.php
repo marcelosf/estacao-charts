@@ -78,11 +78,7 @@
 
         <fieldset style="padding: 20px;">
 
-          <legend>
-
-            Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados
-
-          </legend>
+          <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados:</legend>
 
           <label for="temperature-ini-date-field">Data Inicial:</label>
 
@@ -126,7 +122,7 @@
 
         <fieldset style="padding: 20px;">
 
-          <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados</legend>
+          <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados;</legend>
 
           <label for="pressure-ini-date-field">Data inicial:</label>
 
@@ -160,7 +156,7 @@
 
           <fieldset style="padding: 20px;">
 
-            <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados</legend>
+            <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados:</legend>
             
             <label for="wind-ini-date-field">Data inicial:</label>
 
