@@ -28,7 +28,7 @@ class WindChart {
 
             datasets: [
                 {
-                    label: 'Vento (m/s)',
+                    label: 'Vento (m/s) Rajadas observadas período de um dia.',
 
                     data: this.dataLeft,
 

@@ -42,7 +42,7 @@
   include('MENU_PRINCIPAL.php');
 
 ?>
-<img src="meteograma/banner2.png" width="981" height="200" />
+<img src="meteograma/banner2.png" width="1048" height="200" />
 </div>
 <!--header end -->
 <!--body start -->

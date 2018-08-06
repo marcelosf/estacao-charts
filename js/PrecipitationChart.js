@@ -45,7 +45,7 @@ class PrecipitationChart {
 
                     data: this.duration,
 
-                    label: 'Duração',
+                    label: 'Duração(hora)',
                     
                     yAxisID: 'right-y-axis',
                     
@@ -107,7 +107,7 @@ class PrecipitationChart {
 
                             display: true,
 
-                            labelString: 'Duração',
+                            labelString: 'Duração(hora)',
 
                             position: 'right',
 
