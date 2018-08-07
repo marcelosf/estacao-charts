@@ -1,16 +1,16 @@
-class WindChart {
+import Chart from 'chart.js';
 
-    constructor (labels, dataLeft, directions, ctx) {
+export class PressureChart {
+
+    constructor (labels, data, ctx) {
 
         this.labels = labels;
 
-        this.dataLeft = dataLeft;
-
-        this.directions = directions;
-
-        this.type = 'line'
+        this.pressure = data;
 
         this.ctx = ctx;
+
+        this.type = 'line'
 
         this.data = this._setData();
 
@@ -20,17 +20,15 @@ class WindChart {
 
     _setData () {
 
-        let self = this;
-
         return {
 
             labels: this.labels,
 
             datasets: [
                 {
-                    label: 'Vento (m/s) Rajadas observadas período de um dia.',
+                    label: 'Pressão Atmosférica(mmHg)',
 
-                    data: this.dataLeft,
+                    data: this.pressure,
 
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
 
@@ -40,8 +38,23 @@ class WindChart {
 
                     yAxisId: 'left-y-axis',
 
-                    pointStyle: self._getDirectionImages(this.directions)
+                    showLines: false
+                },
 
+                {
+
+                    data: this.dataRight,
+
+                    label: 'Pressão a Gravidade Normal(hPa)',
+                    
+                    yAxisID: 'right-y-axis',
+                    
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    
+                    borderColor: 'rgba(100,100,132,20)',
+                    
+                    borderWidth: 2
+        
                 }
             ]
 
@@ -68,7 +81,7 @@ class WindChart {
 
                             display: true,
         
-                            labelString: 'Vento (m/s)',
+                            labelString: 'Pressão Atmosférica(mmHg)',
         
                             fontSize: 20,
 
@@ -76,9 +89,46 @@ class WindChart {
         
                         }
 
+                    },
+
+                    {
+
+                        id: 'right-y-axis',
+
+                        position: 'right',
+
+                        ticks: {beginAtZero: true},
+
+                        scaleLabel: {
+
+                            display: true,
+
+                            labelString: 'Pressão a Gravidade Normal(hPa)',
+
+                            position: 'right',
+
+                            fontSize: 20
+
+                        }
+
+                    }
+
+                ],
+
+                xAxes: [
+
+                    {
+
+                        scaleLabel: {
+
+                            fontSize: 20
+
+                        }
+
                     }
 
                 ]
+
             },
 
             tooltips: {
@@ -122,42 +172,6 @@ class WindChart {
     destroy (chart) {
 
         chart.destroy();
-
-    }
-
-    _getDirectionImages (directions) {
-
-        directions = directions ? directions : [];
-
-        let images = [];
-
-        let self = this;
-
-        directions.forEach(function(element) {
-
-            let direction = self._createDirection(element);
-
-            images.push(direction);
-
-        });
-
-        return images;
-
-    }
-
-    _createDirection (direction) {
-
-        if (!isNaN(direction)) {
-
-            return 'circle';
-
-        }
-
-        let directionImage = new Image();
-
-        directionImage.src = IMAGES + 'direction_' + direction + '.png';
-
-        return directionImage;
 
     }
 

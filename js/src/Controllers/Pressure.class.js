@@ -1,12 +1,17 @@
-class Pressure extends BaseChart {
+import {PressureChart} from '../Charts/PressureChart.class';
+import {BaseChart} from './BaseChart.class';
+
+export class Pressure extends BaseChart {
 
     static loadData (actions) {
 
-        let iniDate = $(PRESSURE_INI_DATE_FIELD).val();
+        let iniDate = $(process.env.MIX_PRESSURE_INI_DATE_FIELD).val();
 
-        let endDate = $(PRESSURE_END_DATE_FIELD).val();
+        let endDate = $(process.env.MIX_PRESSURE_END_DATE_FIELD).val();
 
-        this.getDataHandler().loadPressure({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)}, function (pressure) {
+        let dataHandler = this.getDataHandler();
+
+        dataHandler.loadPressure({ini: dataHandler.dateConvert(iniDate), end: dataHandler.dateConvert(endDate)}, function (pressure) {
 
             if (actions) {
 
@@ -34,7 +39,7 @@ class Pressure extends BaseChart {
         
         let date = [];
 
-        let filteredDate = Data.filterDataByDateInterval(iniDate, endDate, PRESSURE_STORAGE, function (data, value, index) {
+        let filteredDate = this.getDataHandler().filterDataByDateInterval(iniDate, endDate, process.env.MIX_PRESSURE_STORAGE, function (data, value, index) {
 
             pressure.push(data.data[index]);
 

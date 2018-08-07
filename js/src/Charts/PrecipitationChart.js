@@ -1,4 +1,6 @@
-class PrecipitationChart {
+import Chart from 'chart.js';
+
+export class PrecipitationChart {
 
     constructor (labels, precipitation, duration, ctx) {
 

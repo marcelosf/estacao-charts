@@ -1,4 +1,4 @@
-class PeriodField {
+export class PeriodField {
 
     constructor (dateFieldParameters) {
 

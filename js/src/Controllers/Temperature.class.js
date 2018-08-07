@@ -1,4 +1,7 @@
-class Temperature extends BaseChart
+import {BaseChart} from './BaseChart.class';
+import {TSeco} from '../Charts/TSeco.class';
+
+export class Temperature extends BaseChart
 {
     
     static updateChart (data, dateIni, dateEnd, context) {
@@ -49,7 +52,7 @@ class Temperature extends BaseChart
 
     static getTSecoData (actions) {
 
-        let data = this.getDataHandler().getSavedData(DATA_INTERVAL_STORAGE);
+        let data = this.getDataHandler().getSavedData(process.env.MIX_DATA_INTERVAL_STORAGE);
 
         actions(data);
 

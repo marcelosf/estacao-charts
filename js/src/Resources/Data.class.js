@@ -1,4 +1,4 @@
-class Data {
+export class Data {
 
     static loadDataByDateInterval (initialDate, endDate, actions) {
 
@@ -6,7 +6,7 @@ class Data {
 
         this.getDataByDateInterval(initialDate, endDate, function(data) {
 
-            self.saveData(DATA_INTERVAL_STORAGE, data);
+            self.saveData(process.env.MIX_DATA_INTERVAL_STORAGE, data);
 
             if (actions) {
                 
@@ -20,7 +20,7 @@ class Data {
     
     static getDataByDateInterval (initialDate, endDate,actions) {
 
-        $.get(API, {route: 'dateInterval', initialDate: initialDate, endDate: endDate}).done(function (data){
+        $.get(process.env.MIX_API, {route: 'dateInterval', initialDate: initialDate, endDate: endDate}).done(function (data){
 
             let interval = JSON.parse(data);
             
@@ -50,7 +50,7 @@ class Data {
 
         this.getPressure(date, function (pressure) {
 
-            self.saveData(PRESSURE_STORAGE, pressure);
+            self.saveData(process.env.MIX_PRESSURE_STORAGE, pressure);
 
             if (actions) {
 
@@ -64,7 +64,7 @@ class Data {
 
     static getPressure (date, actions) {
 
-        $.post(API, {route: 'pressure', date: date}).done(function (data) {
+        $.post(process.env.MIX_API, {route: 'pressure', date: date}).done(function (data) {
 
             let pressure = JSON.parse(data);
             
@@ -80,7 +80,7 @@ class Data {
 
         this.getWind(date, function (wind) {
 
-            self.saveData(WIND_STORAGE, wind);
+            self.saveData(process.env.MIX_WIND_STORAGE, wind);
 
             if (actions) {
 
@@ -94,7 +94,7 @@ class Data {
 
     static getWind (date, actions) {
 
-        $.get(API, {route: 'wind', initialDate: date.ini, endDate: date.end}).done(function(data) {
+        $.get(process.env.MIX_API, {route: 'wind', initialDate: date.ini, endDate: date.end}).done(function(data) {
 
             let wind = JSON.parse(data);
 
@@ -110,7 +110,7 @@ class Data {
 
         this.getPrecipitation(date, function (precipitation) {
 
-            self.saveData(PRECIPITATION_STORAGE, precipitation);
+            self.saveData(process.env.MIX_PRECIPITATION_STORAGE, precipitation);
 
             if (actions) {
 
@@ -124,7 +124,7 @@ class Data {
 
     static getPrecipitation (date, actions) {
 
-        $.get(API, {route: 'precipitation', initialDate: date.ini, endDate: date.end}).done(function(data) {
+        $.get(process.env.MIX_API, {route: 'precipitation', initialDate: date.ini, endDate: date.end}).done(function(data) {
 
             let precipitation = JSON.parse(data);
 
@@ -152,7 +152,7 @@ class Data {
 
     static filterDataByDate (iniDate, endDate) {
 
-        let data = this.getSavedData(DATA_INTERVAL_STORAGE);
+        let data = this.getSavedData(process.env.MIX_DATA_INTERVAL_STORAGE);
 
         let temperature = [];
 

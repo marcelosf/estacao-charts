@@ -1,14 +1,20 @@
-class PressureChart {
+import Chart from 'chart.js';
 
-    constructor (labels, data, ctx) {
+export class TSeco {
+
+    constructor (labels, dataLeft, dataRight, tMaxMin, ctx) {
 
         this.labels = labels;
 
-        this.pressure = data;
+        this.dataLeft = dataLeft;
+
+        this.dataRight = dataRight;
+
+        this.tMaxMin = tMaxMin;
+
+        this.type = 'bar';
 
         this.ctx = ctx;
-
-        this.type = 'line'
 
         this.data = this._setData();
 
@@ -24,11 +30,11 @@ class PressureChart {
 
             datasets: [
                 {
-                    label: 'Pressão Atmosférica(mmHg)',
+                    label: 'Temperatura de Bulbo Seco (ºC)',
 
-                    data: this.pressure,
+                    data: this.dataLeft,
 
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: 'rgba(255, 255, 255, 0)',
 
                     borderColor: 'rgba(255,99,132,1)',
 
@@ -36,27 +42,62 @@ class PressureChart {
 
                     yAxisId: 'left-y-axis',
 
-                    showLines: false
+                    type: 'line'
                 },
 
                 {
 
                     data: this.dataRight,
 
-                    label: 'Pressão a Gravidade Normal(hPa)',
+                    label: 'Umidade Relativa(%)',
                     
                     yAxisID: 'right-y-axis',
                     
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: 'rgba(255, 255, 255, 0)',
                     
                     borderColor: 'rgba(100,100,132,20)',
                     
-                    borderWidth: 2
+                    borderWidth: 2,
+
+                    type: 'line'
         
+                },
+
+                {
+
+                    data: this.tMaxMin.tmax,
+
+                    label: 'Temperatura Máxima (ºC)',
+
+                    yAxisID: 'left-y-axis',
+
+                    backgroundColor: 'rgba(88, 120, 249, 0.5)',
+
+                    borderWidth: 2,
+
+                    type: 'bar'
+
+                },
+                 
+                {
+
+                    data: this.tMaxMin.tmin,
+
+                    label: 'Temperatura Mínima (ºC)',
+
+                    yAxisID: 'left-y-axis',
+
+                    backgroundColor: 'rgba(43, 133, 5, 0.5)',
+
+                    borderWidth: 2,
+
+                    type: 'bar'
+
                 }
             ]
 
         }
+
 
     }
 
@@ -79,7 +120,7 @@ class PressureChart {
 
                             display: true,
         
-                            labelString: 'Pressão Atmosférica(mmHg)',
+                            labelString: 'Temperatura(ºC)',
         
                             fontSize: 20,
 
@@ -101,7 +142,7 @@ class PressureChart {
 
                             display: true,
 
-                            labelString: 'Pressão a Gravidade Normal(hPa)',
+                            labelString: 'Umidade Relativa(%)',
 
                             position: 'right',
 
@@ -109,7 +150,7 @@ class PressureChart {
 
                         }
 
-                    }
+                    },
 
                 ],
 

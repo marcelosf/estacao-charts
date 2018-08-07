@@ -1,14 +1,19 @@
-class Precipitation extends BaseChart {
+import {PrecipitationChart} from '../Charts/PrecipitationChart';
+import {BaseChart} from './BaseChart.class';
+
+export class Precipitation extends BaseChart {
 
     static loadData (actions) {
 
-        let iniDate = $(PRECIPITATION_INI_DATE_FIELD).val();
+        let iniDate = $(process.env.MIX_PRECIPITATION_INI_DATE_FIELD).val();
 
-        let endDate = $(PRECIPITATION_END_DATE_FIELD).val();
+        let endDate = $(process.env.MIX_PRECIPITATION_END_DATE_FIELD).val();
 
-        let convertediniDate = Data.dateConvert(iniDate);
+        let dataHandler = this.getDataHandler();
 
-        this.getDataHandler().loadPrecipitation({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)}, function (wind) {
+        let convertediniDate = dataHandler.dateConvert(iniDate);
+
+        dataHandler.loadPrecipitation({ini: dataHandler.dateConvert(iniDate), end: dataHandler.dateConvert(endDate)}, function (wind) {
 
             if (actions) {
 

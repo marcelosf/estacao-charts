@@ -1,54 +1,6 @@
-class BaseChart {
+import {Data} from '../Resources/Data.class';
 
-    static setSlideRange (id, step, range) {
-
-        let sliderRangeId = '#' + id + '-slider-range';
-
-        let dateFields = this.getDateFields(id);
-
-        let sliderConfig = {
-
-            bounds: {
-     
-                 min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate), false),
-     
-                 max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate), true)
-     
-            },
-
-            defaultValues: {
-
-                min: this.getDateObject(this.getDataHandler().dateConvert(dateFields.minDate), false),
-     
-                max: this.getDateObject(this.getDataHandler().dateConvert(dateFields.maxDate), true)
-
-            },
-
-            step: step,
-
-            range: {
-
-                min: range.min,
-
-                max: range.max
-
-            }
-     
-        };
-
-        $(sliderRangeId).dateRangeSlider(sliderConfig);
-
-        $(sliderRangeId).dateRangeSlider('resize');
-
-    }
-
-    static destroySlideRange (sliderRangeId) {
-
-        let sliderRangeId = '#' + id + '-slider-range';
-
-        $(sliderRangeId).dateRangeSlider("destroy");
-
-    }
+export class BaseChart {
 
     static getDateFields (id) {
 

@@ -1,0 +1,15 @@
+{
+    "name": "marcelosf/chart",
+    "authors": [
+        {
+            "name": "marcelosf",
+            "email": "schneider.fei@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "mix.php"
+        ]
+    },
+    "require": {}
+}

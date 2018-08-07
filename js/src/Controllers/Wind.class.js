@@ -1,14 +1,19 @@
-class Wind extends BaseChart {
+import {WindChart} from '../Charts/WindChart.class';
+import {BaseChart} from './BaseChart.class';
+
+export class Wind extends BaseChart {
 
     static loadData (actions) {
 
-        let iniDate = $(WIND_INI_DATE_FIELD).val();
+        let iniDate = $(process.env.MIX_WIND_INI_DATE_FIELD).val();
 
-        let endDate = $(WIND_END_DATE_FIELD).val();
+        let endDate = $(process.env.MIX_WIND_END_DATE_FIELD).val();
 
-        let convertediniDate = Data.dateConvert(iniDate);
+        let dataHandler = this.getDataHandler();
 
-        this.getDataHandler().loadWind({ini: Data.dateConvert(iniDate), end: Data.dateConvert(endDate)}, function (wind) {
+        let convertediniDate = dataHandler.dateConvert(iniDate);
+
+        this.getDataHandler().loadWind({ini: dataHandler.dateConvert(iniDate), end: dataHandler.dateConvert(endDate)}, function (wind) {
 
             if (actions) {
 
@@ -36,7 +41,7 @@ class Wind extends BaseChart {
         
         let directions = [];
 
-        let filteredDate = Data.filterDataByDateInterval(iniDate, endDate, WIND_STORAGE, function (data, value, index) {
+        let filteredDate = this.getDataHandler().filterDataByDateInterval(iniDate, endDate, process.env.MIX_WIND_STORAGE, function (data, value, index) {
 
             wind.push(data.wind[index]);
 

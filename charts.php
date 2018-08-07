@@ -1,33 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php require_once 'vendor/autoload.php' ?>
+
+<!DOCTYPE HTML>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Estação Meteorológica - Seção Técnica de Serviços Meteorológicos do Instituto de Astronomia, Geofísica e Ciências Atmosféricas  - Universidade de São Paulo</title>
-
 
 <link href="estacao_files/style2.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="consulta/charts/js/jqueryrange/css/classic-min.css" type="text/css" />
 <link href="js/jqueryui/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="js/jqueryui/jquery-ui.min.js"></script>
-<script src="consulta/charts/js/jqueryrange/jQDateRangeSlider-min.js"></script>
-<script src="consulta/charts/js/config.js"></script>
-<script src="consulta/charts/js/TSeco.class.js"></script>
-<script src="consulta/charts/js/PressureChart.class.js"></script>
-<script src="consulta/charts/js/WindChart.class.js"></script>
-<script src="consulta/charts/js/PrecipitationChart.js"></script>
-<script src="consulta/charts/js/Data.class.js"></script>
-<script src="consulta/charts/js/PeriodField.class.js"></script>
-<script src="consulta/charts/js/periodField.js"></script>
-<script src="consulta/charts/js/BaseChart.class.js"></script>
-<script src="consulta/charts/js/Temperature.class.js"></script>
-<script src="consulta/charts/js/Pressure.class.js"></script>
-<script src="consulta/charts/js/Wind.class.js"></script>
-<script src="consulta/charts/js/Precipitation.class.js"></script>
-<script src="consulta/charts/js/slider-range.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
+<script src="consulta/charts/public/js/app.js"></script>
 
 
 </head>
