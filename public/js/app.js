@@ -64801,10 +64801,18 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./scss/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./js/src/app.js");
+__webpack_require__("./js/src/app.js");
+module.exports = __webpack_require__("./scss/app.scss");
 
 
 /***/ })

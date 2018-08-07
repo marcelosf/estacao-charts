@@ -7,8 +7,7 @@
 <title>Estação Meteorológica - Seção Técnica de Serviços Meteorológicos do Instituto de Astronomia, Geofísica e Ciências Atmosféricas  - Universidade de São Paulo</title>
 
 <link href="estacao_files/style2.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="consulta/charts/js/jqueryrange/css/classic-min.css" type="text/css" />
-<link href="js/jqueryui/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="consulta/charts/public/css/app.css" rel="stylesheet" type="text/css" />
 
 <script src="consulta/charts/public/js/app.js"></script>
 
