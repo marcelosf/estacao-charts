@@ -16,9 +16,9 @@ $(document).ready(function () {
 
     Chart.defaults.global.defaultFontSize = process.env.MIX_CHART_LABLE_SIZE;
 
-    PeriodFieldConfig.initialize();
-
     temperatureInitialize();
+
+    PeriodFieldConfig.initialize();
 
     $('#tabs').tabs({
 
