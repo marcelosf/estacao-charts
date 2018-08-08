@@ -16,13 +16,13 @@ $(document).ready(function () {
 
     Chart.defaults.global.defaultFontSize = process.env.MIX_CHART_LABLE_SIZE;
 
-    temperatureInitialize();
-
     PeriodFieldConfig.initialize();
+
+    temperatureInitialize();
 
     $('#tabs').tabs({
 
-        activate: function(event, ui) {
+        activate (event, ui) {
   
             let currentTab = $('#tabs').tabs('option', 'active');
 

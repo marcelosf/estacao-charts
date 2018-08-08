@@ -2,3 +2,4 @@ js/jqueryrange
 js/config.js
 /vendor/
 node_modules
+.env
