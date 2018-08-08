@@ -1494,6 +1494,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var DATE_FORMAT = 'dd/mm/yy';
+
 var PeriodField = function () {
     function PeriodField(dateFieldParameters) {
         _classCallCheck(this, PeriodField);
@@ -1502,24 +1504,24 @@ var PeriodField = function () {
     }
 
     _createClass(PeriodField, [{
-        key: "setField",
+        key: 'setField',
         value: function setField(iniDateFieldId, endDateFieldId) {
 
             var self = this;
 
             var periodStart = $(iniDateFieldId).datepicker(this.dateFieldConfiguration).on('change', function () {
 
-                periodEnd.datepicker("option", "minDate", self.getDate(this));
+                periodEnd.datepicker("option", "minDate", self.getDate(DATE_FORMAT, this));
             });
 
             var periodEnd = $(endDateFieldId).datepicker(this.dateFieldConfiguration).on('change', function () {
 
-                periodStart.datepicker("option", "maxDate", self.getDate(this));
+                periodStart.datepicker("option", "maxDate", self.getDate(DATE_FORMAT, this));
             });
         }
     }, {
-        key: "getDate",
-        value: function getDate(element) {
+        key: 'getDate',
+        value: function getDate(dateFormat, element) {
 
             var date = void 0;
 
