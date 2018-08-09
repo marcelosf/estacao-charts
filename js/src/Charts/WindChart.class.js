@@ -42,10 +42,11 @@ export class WindChart {
 
                     yAxisId: 'left-y-axis',
 
-                    pointStyle: self._getDirectionImages(this.directions)
+                    pointStyle: this._getDirectionImages(this.directions)
 
                 }
-            ]
+
+            ],
 
         }
 
