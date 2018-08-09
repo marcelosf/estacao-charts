@@ -48,7 +48,7 @@
 
         <li><a href="#pa">Pressão Atmosférica</a></li>
 
-        <li><a href="#vento">Vento</a></li>
+        <li><a href="#vento">Rajada</a></li>
 
         <li><a href="#precipitation">Precipitação</a></li>
       

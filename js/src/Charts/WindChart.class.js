@@ -30,7 +30,7 @@ export class WindChart {
 
             datasets: [
                 {
-                    label: 'Vento (m/s) Rajadas observadas com período de uma hora.',
+                    label: 'Rajada (m/s) observadas com período de uma hora.',
 
                     data: this.dataLeft,
 
@@ -71,7 +71,7 @@ export class WindChart {
 
                             display: true,
         
-                            labelString: 'Vento (m/s)',
+                            labelString: 'Rajada (m/s)',
         
                             fontSize: 20,
 
