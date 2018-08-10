@@ -92,7 +92,7 @@
         public function getWind ($initialDate, $endDate)
         {
 
-            $query = "SELECT data, vento, dir 
+            $query = "SELECT data, vento, upper(dir) dir 
             FROM $this->tableName 
             WHERE data BETWEEN date('$initialDate') AND date('$endDate')
             ";
