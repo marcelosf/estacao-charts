@@ -1,5 +1,6 @@
 import {WindChart} from '../Charts/WindChart.class';
 import {BaseChart} from './BaseChart.class';
+import { isMoment } from 'moment';
 
 export class Wind extends BaseChart {
 
@@ -7,11 +8,11 @@ export class Wind extends BaseChart {
 
         let iniDate = $(process.env.MIX_WIND_INI_DATE_FIELD).val();
 
-        let endDate = $(process.env.MIX_WIND_END_DATE_FIELD).val();
+        let period = $(process.env.MIX_WIND_END_DATE_FIELD).val();
+
+        let endDate = moment(iniDate, 'DD/MM/YYYY').add(period, 'days').format('L');
 
         let dataHandler = this.getDataHandler();
-
-        let convertediniDate = dataHandler.dateConvert(iniDate);
 
         this.getDataHandler().loadWind({ini: dataHandler.dateConvert(iniDate), end: dataHandler.dateConvert(endDate)}, function (wind) {
 

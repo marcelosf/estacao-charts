@@ -147,17 +147,27 @@
 
           <fieldset>
 
-            <legend>Utilize os campos Data Inicial e Data final para definir o intervalo de exibição dos dados:</legend>
+            <legend>Os dados são exibidos com intervalo do número de dias selecinado à partir da data escolhida:</legend>
             
             <div class="container">
 
-              <label for="wind-ini-date-field">Data inicial:</label>
+              <label for="wind-ini-date-field">Data:</label>
 
               <input type="text" id="wind-ini-date-field" class="ini-date-field">
 
-              <label for="wind-end-date-field">Data final:</label>
+              <label for="wind-end-date-field">Número de dias:</label>
 
-              <input type="text" id="wind-end-date-field" class="end-date-field">
+              <select name="wind-end-date-field" id="wind-end-date-field" class="end-date-field">
+
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+
+              </select>
 
               <button class="ui-button ui-widget ui-corner-all" id="wind-button">Ok</button>
             

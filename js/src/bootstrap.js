@@ -14,3 +14,9 @@ import 'jquery-ui/ui/widgets/tabs';
  * Import Lodash
  */
 window._ = require('lodash');
+
+/**
+ * Import Moment
+ */
+window.moment = require('moment/moment');
+window.moment.locale('br');
