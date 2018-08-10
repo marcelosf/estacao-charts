@@ -806,7 +806,7 @@ var WindChart = function () {
 
             var directionImage = new Image();
 
-            directionImage.src = "http://10.60.0.57/consulta/charts/images/" + 'direction_' + direction + '.png';
+            directionImage.src = "http://www.estacao.iag.usp.br/consulta/charts/images/" + 'direction_' + direction + '.png';
 
             return directionImage;
         }
