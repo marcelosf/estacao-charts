@@ -301,20 +301,6 @@ var PressureChart = function () {
                     yAxisId: 'left-y-axis',
 
                     showLines: false
-                }, {
-
-                    data: this.dataRight,
-
-                    label: 'Pressão a Gravidade Normal(hPa)',
-
-                    yAxisID: 'right-y-axis',
-
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-
-                    borderColor: 'rgba(100,100,132,20)',
-
-                    borderWidth: 2
-
                 }]
 
             };
@@ -343,26 +329,6 @@ var PressureChart = function () {
                             fontSize: 20,
 
                             position: 'left'
-
-                        }
-
-                    }, {
-
-                        id: 'right-y-axis',
-
-                        position: 'right',
-
-                        ticks: { beginAtZero: true },
-
-                        scaleLabel: {
-
-                            display: true,
-
-                            labelString: 'Pressão a Gravidade Normal(hPa)',
-
-                            position: 'right',
-
-                            fontSize: 20
 
                         }
 
