@@ -26,7 +26,7 @@ export class PressureChart {
 
             datasets: [
                 {
-                    label: 'Pressão Atmosférica(mmHg)',
+                    label: 'Pressão Atmosférica (mmHg)',
 
                     data: this.pressure,
 
@@ -65,7 +65,7 @@ export class PressureChart {
 
                             display: true,
         
-                            labelString: 'Pressão Atmosférica(mmHg)',
+                            labelString: 'Pressão Atmosférica (mmHg)',
         
                             fontSize: 20,
 
