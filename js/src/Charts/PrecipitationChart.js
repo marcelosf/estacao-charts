@@ -47,7 +47,7 @@ export class PrecipitationChart {
 
                     data: this.duration,
 
-                    label: 'Duração(min)',
+                    label: 'Duração (min)',
                     
                     yAxisID: 'right-y-axis',
                     
@@ -109,7 +109,7 @@ export class PrecipitationChart {
 
                             display: true,
 
-                            labelString: 'Duração(min)',
+                            labelString: 'Duração (min)',
 
                             position: 'right',
 

@@ -123,7 +123,7 @@ var PrecipitationChart = function () {
 
                     data: this.duration,
 
-                    label: 'Duração(min)',
+                    label: 'Duração (min)',
 
                     yAxisID: 'right-y-axis',
 
@@ -178,7 +178,7 @@ var PrecipitationChart = function () {
 
                             display: true,
 
-                            labelString: 'Duração(min)',
+                            labelString: 'Duração (min)',
 
                             position: 'right',
 
@@ -288,7 +288,7 @@ var PressureChart = function () {
                 labels: this.labels,
 
                 datasets: [{
-                    label: 'Pressão Atmosférica(mmHg)',
+                    label: 'Pressão Atmosférica (mmHg)',
 
                     data: this.pressure,
 
@@ -324,7 +324,7 @@ var PressureChart = function () {
 
                             display: true,
 
-                            labelString: 'Pressão Atmosférica(mmHg)',
+                            labelString: 'Pressão Atmosférica (mmHg)',
 
                             fontSize: 20,
 
