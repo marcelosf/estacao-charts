@@ -120,7 +120,7 @@ export class TSeco {
 
                             display: true,
         
-                            labelString: 'Temperatura(ºC)',
+                            labelString: 'Temperatura (ºC)',
         
                             fontSize: 20,
 
@@ -142,7 +142,7 @@ export class TSeco {
 
                             display: true,
 
-                            labelString: 'Umidade Relativa(%)',
+                            labelString: 'Umidade Relativa (%)',
 
                             position: 'right',
 
