@@ -288,7 +288,7 @@ var PressureChart = function () {
                 labels: this.labels,
 
                 datasets: [{
-                    label: 'Pressão Atmosférica(mmHg)',
+                    label: 'Pressão Atmosférica (mmHg)',
 
                     data: this.pressure,
 
@@ -324,7 +324,7 @@ var PressureChart = function () {
 
                             display: true,
 
-                            labelString: 'Pressão Atmosférica(mmHg)',
+                            labelString: 'Pressão Atmosférica (mmHg)',
 
                             fontSize: 20,
 
