@@ -28,7 +28,7 @@ export class PrecipitationChart {
 
             datasets: [
                 {
-                    label: 'Precipitação (mm )',
+                    label: 'Precipitação (mm)',
 
                     data: this.precipitation,
 

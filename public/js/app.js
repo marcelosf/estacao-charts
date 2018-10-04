@@ -106,7 +106,7 @@ var PrecipitationChart = function () {
                 labels: this.labels,
 
                 datasets: [{
-                    label: 'Precipitação (mm )',
+                    label: 'Precipitação (mm)',
 
                     data: this.precipitation,
 
