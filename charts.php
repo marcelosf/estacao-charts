@@ -177,6 +177,12 @@
         
         </p>
 
+        <br>
+
+        <p>
+          <i>Norte Geográfico</i> <img src="consulta/charts/images/direction_N.png" alt="Imagem Norte Geográfico" style="margin-top: 10px"> 
+        </p>
+
         <canvas id="wind"></canvas>
 
         <p style="margin-top: 50px;">
