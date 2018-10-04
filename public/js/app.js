@@ -123,7 +123,7 @@ var PrecipitationChart = function () {
 
                     data: this.duration,
 
-                    label: 'Duração(min)',
+                    label: 'Duração (min)',
 
                     yAxisID: 'right-y-axis',
 
@@ -178,7 +178,7 @@ var PrecipitationChart = function () {
 
                             display: true,
 
-                            labelString: 'Duração(min)',
+                            labelString: 'Duração (min)',
 
                             position: 'right',
 
