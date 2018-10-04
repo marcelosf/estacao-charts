@@ -1,5 +1,6 @@
 js/jqueryrange
 js/config.js
 /vendor/
+public
 node_modules
 .env
