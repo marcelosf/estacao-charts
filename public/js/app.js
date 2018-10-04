@@ -652,7 +652,7 @@ var WindChart = function () {
                 labels: this.labels,
 
                 datasets: [{
-                    label: 'Rajada (m/s) observadas com período de uma hora.',
+                    label: 'Rajada (m/s) observadas no intervalo de uma hora.',
 
                     data: this.dataLeft,
 
