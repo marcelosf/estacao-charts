@@ -4,9 +4,9 @@ include('api.php');
 
 $route = $_GET['route'] ? $_GET['route'] : $_POST['route'];
 
-switch($route) {
+switch ($route) {
 
-    case 'range': 
+    case 'range':
 
         Api::getDateRange();
 
@@ -17,8 +17,16 @@ switch($route) {
         $initialDate = $_GET['initialDate'];
 
         $endDate = $_GET['endDate'];
-
+        
         Api::getDateInterval($initialDate, $endDate);
+        
+        break;
+        
+    case 'serialInterval':
+        $initialDate = $_GET['initialDate'];
+        $endDate = $_GET['endDate'];
+        
+        API::getSerialDateInterval($initialDate, $endDate);
 
         break;
 
@@ -37,6 +45,14 @@ switch($route) {
         $date = $_POST['date'];
 
         Api::getPressure($date);
+
+        break;
+
+    case 'pressureHpaAndMmgh':
+
+        $date = $_POST['date'];
+
+        Api::getSerialPressureByDateInterval($date);
 
         break;
 
@@ -59,5 +75,4 @@ switch($route) {
         Api::getPrecipitation($initialDate, $endDate);
 
         break;
-
 }

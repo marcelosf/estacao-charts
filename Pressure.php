@@ -29,6 +29,16 @@ class Pressure
 
     }
 
+    public function getPressureHpaAndMmgh($date)
+    {
+        $pressure = $this->databaseQuery->getPressure($date);
+        $processed = $this->pressureProcessingHandler($pressure['data'])->getPressureHpaAndMmgh();
+        $pressureList = $this->formatDataArray($pressure['data']);
+        $pressureList['data'] = $processed;
+
+        return $pressureList;
+    }
+
     protected function pressureProcessingHandler($data)
     {
 

@@ -5,10 +5,10 @@ include './Pressure.php';
 include './Wind.php';
 include './Precipitation.php';
 
-class Api 
+class Api
 {
 
-    public static function getDateRange ()
+    public static function getDateRange()
     {
 
         $tseco = new TSecoQuery();
@@ -18,10 +18,9 @@ class Api
         echo json_encode($range);
 
         die();
-
     }
 
-    public static function getDateInterval ($initialDate, $endDate)
+    public static function getDateInterval($initialDate, $endDate)
     {
 
         $tseco = new TSecoQuery();
@@ -31,7 +30,26 @@ class Api
         echo json_encode($dateInterval);
 
         die();
+    }
 
+    public static function getSerialDateInterval($initialDate, $endDate)
+    {
+        $tseco = new TSecoQuery();
+        $dateInterval = $tseco->getSerialDateInterval($initialDate, $endDate);
+
+        echo json_encode($dateInterval);
+
+        die();
+    }
+
+    public static function getSerialPressureByDateInterval($date) 
+    {
+        $pressure = new Pressure();
+        $data = $pressure->getPressureHpaAndMmgh($date);
+
+        echo json_encode($data);
+
+        die();
     }
 
     public static function getPressure($date)
@@ -44,7 +62,6 @@ class Api
         echo json_encode($dailyPressure);
 
         die();
-
     }
 
     public static function getWind($initialDate, $endDate)
@@ -57,10 +74,9 @@ class Api
         echo json_encode($windInterval);
 
         die();
-
     }
 
-    public static function getPrecipitation($initialDate, $endDate) 
+    public static function getPrecipitation($initialDate, $endDate)
     {
 
         $precipitation = new Precipitation();
@@ -70,7 +86,5 @@ class Api
         echo json_encode($precipitationInterval);
 
         die();
-
     }
-
 }

@@ -1,2 +1,2 @@
 require("./bootstrap");
-require("./index");
+require("./home");

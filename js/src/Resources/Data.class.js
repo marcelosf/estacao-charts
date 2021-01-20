@@ -17,17 +17,62 @@ export class Data {
         });
 
     }
+
+    static loadSerialByDateInterval (initialDate, endDate, actions) {
+
+        let self = this;
+
+        this.getSerialByDateInterval(initialDate, endDate, data => {
+
+            self.saveData(process.env.MIX_DATA_INTERVAL_STORAGE, data);
+
+            if (actions) {
+
+                actions(data);
+
+            }
+
+        });
+
+    }
+
+    static loadSerialPressureByDateInterval (date, actions) {
+        let self = this;
+        self.getSerialPressureByDateInterval(date, data => {
+            if (actions) {
+                actions(data);
+            }
+        });
+    }
+
+
     
     static getDataByDateInterval (initialDate, endDate,actions) {
 
         $.get(process.env.MIX_API, {route: 'dateInterval', initialDate: initialDate, endDate: endDate}).done(function (data){
-
+            
             let interval = JSON.parse(data);
             
             actions(interval);
     
         });
 
+    }
+
+    static getSerialByDateInterval(initialDate, endDate, actions) {
+        $.get(process.env.MIX_API, { route: 'serialInterval', initialDate: initialDate, endDate: endDate }).done(data => {
+            let interval = JSON.parse(data);
+
+            actions(interval);
+        })
+    }
+
+    static getSerialPressureByDateInterval(date, actions) {
+        $.post(process.env.MIX_API, {route: 'pressureHpaAndMmgh', date: date}).done(data => {
+            let response = JSON.parse(data);
+            
+            actions(response);
+        });
     }
 
     static dateConvert (date) {

@@ -34,6 +34,19 @@ class PressurePreProcessing
 
     }
 
+    public function getPressureHpaAndMmgh()
+    {
+        $pressure = [];
+
+        $pressure['hpa'] = $this->getPressureData();
+
+        $pressure['mmgh'] = array_map(function($row) {
+            return $row['pressao'];
+        }, $this->data);
+
+        return $pressure;
+    }
+
     protected function getPressure()
     {
 

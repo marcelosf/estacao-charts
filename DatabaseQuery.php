@@ -1,57 +1,54 @@
 <?php
 
-    include('../../files/library/DBMysqliConnect.php');
+include('../../files/library/DBMysqliConnect.php');
 
-    class DatabaseQuery
+class DatabaseQuery
+{
+
+    private $databaseName;
+
+    private $tableName;
+
+    private $link;
+
+    public function __construct($databaseName, $tableName)
     {
 
-        private $databaseName;
+        $this->databaseName = $databaseName;
 
-        private $tableName; 
+        $this->tableName = $tableName;
 
-        private $link;
+        $this->link = connectiToDB($this->databaseName) or die('Nao deu!');
+    }
 
-        public function __construct($databaseName, $tableName)
-        {
+    public function getMinimumDate()
+    {
 
-            $this->databaseName = $databaseName;
+        $query = "SELECT MIN(data) as minimum FROM $this->tableName;";
 
-            $this->tableName = $tableName;
+        $result = mysqli_query($this->link, $query);
 
-            $this->link = connectiToDB($this->databaseName) or die('Nao deu!');
+        $date = $this->fetchArray($result);
 
-        }
+        return $date['data'][0];
+    }
 
-        public function getMinimumDate ()
-        {
+    public function getMaximumDate()
+    {
 
-            $query = "SELECT MIN(data) as minimum FROM $this->tableName;";
+        $query = "SELECT MAX(data) as maximum FROM $this->tableName;";
 
-            $result = mysqli_query($this->link, $query);
+        $result = mysqli_query($this->link, $query);
 
-            $date = $this->fetchArray($result);
+        $date = $this->fetchArray($result);
 
-            return $date['data'][0];
+        return $date['data'][0];
+    }
 
-        }
+    public function getDateInterval($initialDate, $endDate)
+    {
 
-        public function getMaximumDate ()
-        {
-
-            $query = "SELECT MAX(data) as maximum FROM $this->tableName;";
-
-            $result = mysqli_query($this->link, $query);
-
-            $date = $this->fetchArray($result);
-
-            return $date['data'][0];
-
-        }
-
-        public function getDateInterval ($initialDate, $endDate) 
-        {
-
-            $query = "SELECT 
+        $query = "SELECT 
                 date_format(data, '%Y-%m-%d') data_formatada,
                 AVG(temp_bar) temp_bar,
                 AVG(pressao) pressao,
@@ -68,49 +65,75 @@
             
             ";
 
-            $result = mysqli_query($this->link, $query);
+        $file = fopen('./query.log', 'a');
+        fwrite($file, $query);
+        fclose($file);
 
-            return $this->fetchArray($result);
+        $result = mysqli_query($this->link, $query);
 
-        }
+        return $this->fetchArray($result);
+    }
 
-        public function getPrecipitation ($initialDate, $endDate) 
-        {
+    public function getSerialDateInterval($initialDate, $endDate)
+    {
+        $query = "SELECT 
+            data data_formatada,
+            temp_bar,
+            pressao,
+            tseco,
+            tumido,
+            tmax,
+            tmin
 
-            $query = "SELECT date_format(DATA, '%Y-%m-%d') date, AVG(prec) precipitation, AVG(duration) duration
+            FROM $this->tableName
+
+            WHERE data BETWEEN '$initialDate' AND '$endDate'
+        ";
+
+        $file = fopen('./query.log', 'a');
+        fwrite($file, $query);
+        fclose($file);
+
+        $result = mysqli_query($this->link, $query);
+
+        return $this->fetchArray($result);
+    }
+
+    public function getPrecipitation($initialDate, $endDate)
+    {
+
+        $query = "SELECT date_format(DATA, '%Y-%m-%d') date, AVG(prec) precipitation, AVG(duration) duration
             FROM $this->tableName 
             WHERE DATA BETWEEN '$initialDate' AND '$endDate' 
             GROUP BY date
             ";
 
-            $result = mysqli_query($this->link, $query);
+        $result = mysqli_query($this->link, $query);
 
-            return $this->fetchArray($result);
+        return $this->fetchArray($result);
+    }
 
-        }
+    public function getWind($initialDate, $endDate)
+    {
 
-        public function getWind ($initialDate, $endDate)
-        {
-
-            $query = "SELECT data, vento, upper(dir) dir 
+        $query = "SELECT data, vento, upper(dir) dir 
             FROM $this->tableName 
             WHERE data BETWEEN date('$initialDate') AND date('$endDate')
             ";
 
-            $result = mysqli_query($this->link, $query);
+        $result = mysqli_query($this->link, $query);
 
-            return $this->fetchArray($result);
+        return $this->fetchArray($result);
+    }
 
-        }
+    public function getPressure(array $date)
+    {
 
-        public function getPressure (array $date) 
-        {   
+        $initialDate = $date['ini'] . ' 00:00:00';
 
-            $initialDate = $date['ini'] . ' 00:00:00';
+        $endDate = $date['end'] . ' 23:59:59';
 
-            $endDate = $date['end'] . ' 23:59:59';
-
-            $query = "SELECT data, pressao, temp_bar 
+        $query = "SELECT data, pressao, temp_bar 
             
             FROM $this->tableName
             
@@ -118,33 +141,27 @@
 
             ";
 
-            $result = mysqli_query($this->link, $query);
+        $result = mysqli_query($this->link, $query);
 
-            return $this->fetchArray($result);
-
-        }
-
-        public function freeResult ($result) 
-        {
-
-            mysqli_free_result($result);
-
-        }
-
-        protected function fetchArray($result)
-        {
-
-            $data = array();
-
-            while($row = mysqli_fetch_array($result))
-            {
-
-                $data['data'][] = $row;
-
-            }
-
-            return $data;
-
-        }
-
+        return $this->fetchArray($result);
     }
+
+    public function freeResult($result)
+    {
+
+        mysqli_free_result($result);
+    }
+
+    protected function fetchArray($result)
+    {
+
+        $data = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+
+            $data['data'][] = $row;
+        }
+
+        return $data;
+    }
+}

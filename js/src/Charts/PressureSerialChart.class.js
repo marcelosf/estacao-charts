@@ -1,219 +1,101 @@
 import Chart from 'chart.js';
 
-export class TSeco {
-
-    constructor (labels, dataLeft, dataRight, tMaxMin, ctx, fontSize=false) {
-
+export class PressureSerialChart {
+    constructor(labels, dataLeft, dataRight, ctx, fontSize=false) {
         this.labels = labels;
-
         this.dataLeft = dataLeft;
-
         this.dataRight = dataRight;
-
-        this.tMaxMin = tMaxMin;
-        
-        this.type = 'bar';
-        
         this.ctx = ctx;
-        
-        this.fontSize = fontSize ? fontSize : 20;
-        
+        this.fontSize = fontSize;
         this.data = this._setData();
-
         this.options = this._setOptions();
-
-
     }
 
-    _setData () {
+    _setData() {
         return {
-
             labels: this.labels,
-
             datasets: [
                 {
-                    label: 'Temperatura de Bulbo Seco (ºC)',
-
+                    label: 'Pressão Atmosférica(mmgHg)',
                     data: this.dataLeft,
-
                     backgroundColor: 'rgba(255, 255, 255, 0)',
-
                     borderColor: 'rgba(255,99,132,1)',
-
                     borderWidth: 2,
-
-                    yAxisId: 'left-y-axis',
-
+                    yAxisID: 'left-y-axis',
                     type: 'line'
                 },
-
                 {
-
+                    label: 'Pressão Atmosférica(hpa)',
                     data: this.dataRight,
-
-                    label: 'Umidade Relativa(%)',
-                    
-                    yAxisID: 'right-y-axis',
-                    
                     backgroundColor: 'rgba(255, 255, 255, 0)',
-                    
                     borderColor: 'rgba(100,100,132,20)',
-                    
                     borderWidth: 2,
-
+                    yAxisID: 'right-y-axis',
                     type: 'line'
-        
-                },
-
-                {
-
-                    data: this.tMaxMin.tmax,
-
-                    label: 'Temperatura Máxima (ºC)',
-
-                    yAxisID: 'left-y-axis',
-
-                    backgroundColor: 'rgba(88, 120, 249, 0.5)',
-
-                    borderWidth: 2,
-
-                    type: 'bar'
-
-                },
-                 
-                {
-
-                    data: this.tMaxMin.tmin,
-
-                    label: 'Temperatura Mínima (ºC)',
-
-                    yAxisID: 'left-y-axis',
-
-                    backgroundColor: 'rgba(43, 133, 5, 0.5)',
-
-                    borderWidth: 2,
-
-                    type: 'bar'
-
                 }
             ]
-
         }
-
-
     }
 
-    _setOptions () {
-
+    _setOptions() {
         return {
-
             scales: {
-
                 yAxes: [
-
                     {
                         id: 'left-y-axis',
-
                         position: 'left',
-
                         ticks: {beginAtZero: true},
-
                         scaleLabel: {
-
                             display: true,
-        
-                            labelString: 'Temperatura (ºC)',
-        
+                            labelString: 'Pressão mmgH',
                             fontSize: this.fontSize,
-
                             position: 'left'
-        
                         }
-
                     },
-
                     {
-
                         id: 'right-y-axis',
-
                         position: 'right',
-
                         ticks: {beginAtZero: true},
-
                         scaleLabel: {
-
                             display: true,
-
-                            labelString: 'Umidade Relativa (%)',
-
-                            position: 'right',
-
-                            fontSize: this.fontSize
-
+                            labelString: 'Pressão hpa',
+                            fontSize: this.fontSize,
+                            position: 'right'
                         }
-
-                    },
-
-                ],
-
-                xAxes: [
-
-                    {
-
-                        scaleLabel: {
-
-                            fontSize: this.fontSize
-
-                        }
-
                     }
-
+                ],
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            fontSize: this.fontSize
+                        }
+                    }
                 ]
-
             },
-
             tooltips: {
-
                 titleFontSize: 22,
-
                 bodyFontSize: this.fontSize,
-
-                enabled: true
-
+                enable: true
             },
-
             legend: {
-
                 labels: {
-
                     fontSize: this.fontSize
-
                 }
-
             }
-
-        }    
-
+        }
     }
 
-    getChart () {
-
+    getChart() {
         return new Chart(this.ctx, {
-
             type: this.type,
-
             data: this.data,
-
             options: this.options
-
         });
-
     }
 
-    destroy (chart) {
-
+    destroy(chart) {
         chart.destroy();
-
     }
-
 }
+
+

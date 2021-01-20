@@ -23,7 +23,7 @@ export class Temperature extends BaseChart
     static loadData (actions) {
 
         let initialDate = $('#temperature-ini-date-field').val();
-
+        
         let endDate = $('#temperature-end-date-field').val();
 
         let data = this.getDataHandler();
