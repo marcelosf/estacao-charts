@@ -2,7 +2,7 @@ import Chart from 'chart.js';
 
 export class WindChart {
 
-    constructor (labels, dataLeft, directions, ctx) {
+    constructor (labels, dataLeft, directions, ctx, fontSize=20) {
 
         this.labels = labels;
 
@@ -15,8 +15,11 @@ export class WindChart {
         this.ctx = ctx;
 
         this.data = this._setData();
+        
+        this.fontSize = fontSize;
 
         this.options = this._setOptions();
+
 
     }
 
@@ -73,7 +76,7 @@ export class WindChart {
         
                             labelString: 'Rajada (m/s)',
         
-                            fontSize: 20,
+                            fontSize: this.fontSize,
 
                             position: 'left'
         
@@ -88,7 +91,7 @@ export class WindChart {
 
                 titleFontSize: 22,
 
-                bodyFontSize: 20,
+                bodyFontSize: this.fontSize,
 
                 enabled: true
 
@@ -98,7 +101,7 @@ export class WindChart {
 
                 labels: {
 
-                    fontSize: 20
+                    fontSize: this.fontSize
 
                 }
 

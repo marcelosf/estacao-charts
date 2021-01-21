@@ -1,11 +1,13 @@
-import { TemperatureInterval } from "./Controllers/TemperatureInterval.class";
 import Chart from "chart.js";
+import { TemperatureInterval } from "./Controllers/TemperatureInterval.class";
 import { PressureSerial } from "./Controllers/PressureSerial.class";
+import { WindDaily } from "./Controllers/Wind.class";
 
 $(document).ready(() => {
   Chart.defaults.global.defaultFontSize = 12;
   temperatureInitialize();
   pressureInitialize();
+  windInitialize();
 });
 
 function temperatureInitialize() {
@@ -38,6 +40,21 @@ function pressureInitialize() {
       pressure.date,
       pressure.data.mmgh,
       pressure.data.hpa,
+      ctx,
+      12
+    );
+  });
+}
+
+function windInitialize() {
+  WindDaily.loadData((wind) => {
+    WindDaily.destroy(window.windDaily);
+    const ctx = $("#wind");
+
+    window.windDaily = WindDaily.getChart(
+      wind.date,
+      wind.wind,
+      wind.direction,
       ctx,
       12
     );

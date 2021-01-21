@@ -1,73 +1,84 @@
-import {WindChart} from '../Charts/WindChart.class';
-import {BaseChart} from './BaseChart.class';
-import { isMoment } from 'moment';
+import { WindChart } from "../Charts/WindChart.class";
+import { BaseChart } from "./BaseChart.class";
+import { isMoment } from "moment";
 
 export class Wind extends BaseChart {
+  static loadData(actions) {
+    let period = this._getPeriod();
+    let dataHandler = this.getDataHandler();
 
-    static loadData (actions) {
+    this.getDataHandler().loadWind(
+      {
+        ini: dataHandler.dateConvert(period.ini),
+        end: dataHandler.dateConvert(period.end),
+      },
+      function (wind) {
+        if (actions) {
+          actions(wind);
+        }
+      }
+    );
+  }
 
-        let iniDate = $(process.env.MIX_WIND_INI_DATE_FIELD).val();
+  static _getPeriod() {
+    let iniDate = $(process.env.MIX_WIND_INI_DATE_FIELD).val();
+    let period = $(process.env.MIX_WIND_END_DATE_FIELD).val();
+    let endDate = moment(iniDate, "DD/MM/YYYY").add(period, "days").format("L");
 
-        let period = $(process.env.MIX_WIND_END_DATE_FIELD).val();
+    return { ini: iniDate, end: endDate };
+  }
 
-        let endDate = moment(iniDate, 'DD/MM/YYYY').add(period, 'days').format('L');
+  static getChart(labels, dataLeft, directions, ctx, fontSize) {
+    let labelsFormatted = this.dateToBRFormat(labels, true);
 
-        let dataHandler = this.getDataHandler();
+    let windChart = new WindChart(labelsFormatted, dataLeft, directions, ctx, fontSize);
 
-        this.getDataHandler().loadWind({ini: dataHandler.dateConvert(iniDate), end: dataHandler.dateConvert(endDate)}, function (wind) {
+    return windChart.getChart();
+  }
 
-            if (actions) {
+  static filterWindDataByDateInterval(iniDate, endDate) {
+    let wind = [];
 
-                actions(wind);
+    let directions = [];
 
-            }
+    let filteredDate = this.getDataHandler().filterDataByDateInterval(
+      iniDate,
+      endDate,
+      process.env.MIX_WIND_STORAGE,
+      function (data, value, index) {
+        wind.push(data.wind[index]);
 
-        });
+        directions.push(data.direction[index]);
+      }
+    );
 
-    }
+    return { date: filteredDate, wind: wind, directions: directions };
+  }
 
-    static getChart (labels, dataLeft, directions, ctx) {
+  static updateChart(data, iniDate, endDate, context) {
+    let ini = this.dateFormat(iniDate);
 
-        let labelsFormatted = this.dateToBRFormat(labels, true);
+    let end = this.dateFormat(endDate);
 
-        let windChart = new WindChart(labelsFormatted, dataLeft, directions, ctx);
+    let filteredData = this.filterWindDataByDateInterval(ini, end);
 
-        return windChart.getChart();
+    let ctx = $(context);
 
-    }
+    return this.getChart(
+      filteredData.date,
+      filteredData.wind,
+      filteredData.directions,
+      ctx
+    );
+  }
+}
 
-    static filterWindDataByDateInterval (iniDate, endDate) {
+export class WindDaily extends Wind {
+  static _getPeriod() {
+    const format = "DD/MM/YYYY";
+    let iniDate = moment().add(-1, "days").format(format);
+    let endDate = moment().format(format);
 
-        let wind = [];
-        
-        let directions = [];
-
-        let filteredDate = this.getDataHandler().filterDataByDateInterval(iniDate, endDate, process.env.MIX_WIND_STORAGE, function (data, value, index) {
-
-            wind.push(data.wind[index]);
-
-            directions.push(data.direction[index]);
-
-        });
-
-        return {date: filteredDate, wind: wind, directions: directions};
-
-    }
-
-    static updateChart (data, iniDate, endDate, context) {
-
-        let ini = this.dateFormat(iniDate);
-
-        let end = this.dateFormat(endDate);
-
-        let filteredData = this.filterWindDataByDateInterval(ini, end);
-        
-        let ctx = $(context);
-
-        return this.getChart(filteredData.date, filteredData.wind, filteredData.directions, ctx);
-
-    }
-
-
-
+    return { ini: iniDate, end: endDate };
+  }
 }

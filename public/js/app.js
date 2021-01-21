@@ -398,6 +398,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var WindChart = /*#__PURE__*/function () {
   function WindChart(labels, dataLeft, directions, ctx) {
+    var fontSize = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 20;
+
     _classCallCheck(this, WindChart);
 
     this.labels = labels;
@@ -406,6 +408,7 @@ var WindChart = /*#__PURE__*/function () {
     this.type = 'line';
     this.ctx = ctx;
     this.data = this._setData();
+    this.fontSize = fontSize;
     this.options = this._setOptions();
   }
 
@@ -440,19 +443,19 @@ var WindChart = /*#__PURE__*/function () {
             scaleLabel: {
               display: true,
               labelString: 'Rajada (m/s)',
-              fontSize: 20,
+              fontSize: this.fontSize,
               position: 'left'
             }
           }]
         },
         tooltips: {
           titleFontSize: 22,
-          bodyFontSize: 20,
+          bodyFontSize: this.fontSize,
           enabled: true
         },
         legend: {
           labels: {
-            fontSize: 20
+            fontSize: this.fontSize
           }
         }
       };
@@ -887,7 +890,8 @@ var Temperature = /*#__PURE__*/function (_BaseChart) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Wind": () => /* binding */ Wind
+/* harmony export */   "Wind": () => /* binding */ Wind,
+/* harmony export */   "WindDaily": () => /* binding */ WindDaily
 /* harmony export */ });
 /* harmony import */ var _Charts_WindChart_class__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Charts/WindChart.class */ "./js/src/Charts/WindChart.class.js");
 /* harmony import */ var _BaseChart_class__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseChart.class */ "./js/src/Controllers/BaseChart.class.js");
@@ -932,13 +936,12 @@ var Wind = /*#__PURE__*/function (_BaseChart) {
   _createClass(Wind, null, [{
     key: "loadData",
     value: function loadData(actions) {
-      var iniDate = $("#wind-ini-date-field").val();
-      var period = $("#wind-end-date-field").val();
-      var endDate = moment(iniDate, 'DD/MM/YYYY').add(period, 'days').format('L');
+      var period = this._getPeriod();
+
       var dataHandler = this.getDataHandler();
       this.getDataHandler().loadWind({
-        ini: dataHandler.dateConvert(iniDate),
-        end: dataHandler.dateConvert(endDate)
+        ini: dataHandler.dateConvert(period.ini),
+        end: dataHandler.dateConvert(period.end)
       }, function (wind) {
         if (actions) {
           actions(wind);
@@ -946,10 +949,21 @@ var Wind = /*#__PURE__*/function (_BaseChart) {
       });
     }
   }, {
+    key: "_getPeriod",
+    value: function _getPeriod() {
+      var iniDate = $("#wind-ini-date-field").val();
+      var period = $("#wind-end-date-field").val();
+      var endDate = moment(iniDate, "DD/MM/YYYY").add(period, "days").format("L");
+      return {
+        ini: iniDate,
+        end: endDate
+      };
+    }
+  }, {
     key: "getChart",
-    value: function getChart(labels, dataLeft, directions, ctx) {
+    value: function getChart(labels, dataLeft, directions, ctx, fontSize) {
       var labelsFormatted = this.dateToBRFormat(labels, true);
-      var windChart = new _Charts_WindChart_class__WEBPACK_IMPORTED_MODULE_0__.WindChart(labelsFormatted, dataLeft, directions, ctx);
+      var windChart = new _Charts_WindChart_class__WEBPACK_IMPORTED_MODULE_0__.WindChart(labelsFormatted, dataLeft, directions, ctx, fontSize);
       return windChart.getChart();
     }
   }, {
@@ -980,6 +994,32 @@ var Wind = /*#__PURE__*/function (_BaseChart) {
 
   return Wind;
 }(_BaseChart_class__WEBPACK_IMPORTED_MODULE_1__.BaseChart);
+var WindDaily = /*#__PURE__*/function (_Wind) {
+  _inherits(WindDaily, _Wind);
+
+  var _super2 = _createSuper(WindDaily);
+
+  function WindDaily() {
+    _classCallCheck(this, WindDaily);
+
+    return _super2.apply(this, arguments);
+  }
+
+  _createClass(WindDaily, null, [{
+    key: "_getPeriod",
+    value: function _getPeriod() {
+      var format = "DD/MM/YYYY";
+      var iniDate = moment().add(-1, "days").format(format);
+      var endDate = moment().format(format);
+      return {
+        ini: iniDate,
+        end: endDate
+      };
+    }
+  }]);
+
+  return WindDaily;
+}(Wind);
 
 /***/ }),
 
