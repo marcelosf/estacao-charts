@@ -34,7 +34,7 @@ class Pressure
         $pressure = $this->databaseQuery->getPressure($date);
         $processed = $this->pressureProcessingHandler($pressure['data'])->getPressureHpaAndMmgh();
         $pressureList = $this->formatDataArray($pressure['data']);
-        $pressureList['data'] = $processed;
+        $pressureList['data'] = $processed ? $processed : [];
 
         return $pressureList;
     }

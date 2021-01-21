@@ -4,10 +4,9 @@ import { BaseChart } from "./BaseChart.class";
 export class PressureSerial extends BaseChart {
   
   static loadData(actions) {
-    let dateFormat = "DD/MM/YYYY";
-    let initialDate = moment("2020-02-28").format(dateFormat);
-    let endDate = moment("2020-02-29").format(dateFormat);
-    // let endDate = moment().add(-1, 'days').format(dateFormat);
+    const dateFormat = "DD/MM/YYYY";
+    let initialDate = moment().add(-1, "days").format(dateFormat);
+    let endDate = moment().format(dateFormat);
 
     let data = this.getDataHandler();
 
@@ -22,8 +21,8 @@ export class PressureSerial extends BaseChart {
 
   static getChart(labels, dataLeft, dataRight, ctx, fontSize) {
     let formattedDates = this.dateToBRFormat(labels, false);
-    let pressure = new PressureSerialChart(formattedDates, dataLeft, dataRight, ctx, fontSize)
+    let pressure = new PressureSerialChart(formattedDates, dataLeft, dataRight, ctx, fontSize);
 
-    return pressure.getChart()
+    return pressure.getChart();
   }
 }

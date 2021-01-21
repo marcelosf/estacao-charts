@@ -4,9 +4,9 @@ import { TSeco } from "../Charts/TSeco.class";
 export class TemperatureInterval extends Temperature {
   
   static loadData(actions) {
-    let dateFormat = "DD/MM/YYYY";
-    let initialDate = moment("2020-02-28").format(dateFormat);
-    let endDate = moment("2020-02-29").format(dateFormat);
+    const dateFormat = "DD/MM/YYYY";
+    let initialDate = moment().add(-1, "days").format(dateFormat);
+    let endDate = moment().format(dateFormat);
     // let endDate = moment().add(-1, 'days').format(dateFormat);
 
     let data = this.getDataHandler();
