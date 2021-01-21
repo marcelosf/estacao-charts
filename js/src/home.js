@@ -1,7 +1,6 @@
-import { TemperatureInterval } from './Controllers/TemperatureInterval.class';
-import Chart from 'chart.js';
-import { PressureSerial } from './Controllers/PressureSerial.class';
-
+import { TemperatureInterval } from "./Controllers/TemperatureInterval.class";
+import Chart from "chart.js";
+import { PressureSerial } from "./Controllers/PressureSerial.class";
 
 $(document).ready(() => {
   Chart.defaults.global.defaultFontSize = 12;
@@ -31,17 +30,15 @@ function temperatureInitialize() {
 }
 
 function pressureInitialize() {
-  PressureSerial.loadData(pressure => {
+  PressureSerial.loadData((pressure) => {
     PressureSerial.destroy(window.pressureSerial);
-    let ctx = $('#pressure');
-
-    console.log(pressure);
+    let ctx = $("#pressure");
 
     window.pressureSerial = PressureSerial.getChart(
-      pressure.date, 
+      pressure.date,
       pressure.data.mmgh,
-      pressure.data.hpa, 
-      ctx, 
+      pressure.data.hpa,
+      ctx,
       12
     );
   });
