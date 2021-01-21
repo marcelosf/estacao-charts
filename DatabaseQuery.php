@@ -65,10 +65,6 @@ class DatabaseQuery
             
             ";
 
-        $file = fopen('./query.log', 'a');
-        fwrite($file, $query);
-        fclose($file);
-
         $result = mysqli_query($this->link, $query);
 
         return $this->fetchArray($result);
@@ -89,10 +85,6 @@ class DatabaseQuery
 
             WHERE data BETWEEN '$initialDate' AND '$endDate'
         ";
-
-        $file = fopen('./query.log', 'a');
-        fwrite($file, $query);
-        fclose($file);
 
         $result = mysqli_query($this->link, $query);
 
