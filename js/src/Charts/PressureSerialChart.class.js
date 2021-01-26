@@ -10,8 +10,6 @@ export class PressureSerialChart {
     this.data = this._setData();
     this.scale = this._setScale();
     this.options = this._setOptions();
-
-    console.log(this.scale);
   }
 
   _setScale() {

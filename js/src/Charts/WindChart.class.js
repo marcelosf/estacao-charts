@@ -1,170 +1,112 @@
-import Chart from 'chart.js';
+import Chart from "chart.js";
 
 export class WindChart {
+  constructor(labels, dataLeft, directions, ctx, fontSize = 20) {
+    this.labels = labels;
+    this.dataLeft = dataLeft;
+    this.directions = directions;
+    this.type = "line";
+    this.ctx = ctx;
+    this.data = this._setData();
+    this.scale = this._setScale();
+    this.fontSize = fontSize;
+    this.options = this._setOptions();
+  }
+  _setScale() {
+    const suggestedMax = Math.max(...this.dataLeft) + 0.5;
+    const suggestedMin = Math.min(...this.dataLeft) - 0.5;
 
-    constructor (labels, dataLeft, directions, ctx, fontSize=20) {
+    return { suggestedMin: suggestedMin, suggestedMax: suggestedMax };
+  }
 
-        this.labels = labels;
+  _setData() {
+    let self = this;
+    return {
+      labels: this.labels,
+      datasets: [
+        {
+          label: "Rajada (m/s) observadas no intervalo de uma hora.",
+          data: this.dataLeft,
+          backgroundColor: "rgba(255, 255, 255, 0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 2,
+          yAxisId: "left-y-axis",
+          pointStyle: this._getDirectionImages(this.directions),
+        },
+      ],
+    };
+  }
 
-        this.dataLeft = dataLeft;
-
-        this.directions = directions;
-
-        this.type = 'line'
-
-        this.ctx = ctx;
-
-        this.data = this._setData();
-        
-        this.fontSize = fontSize;
-
-        this.options = this._setOptions();
-
-
-    }
-
-    _setData () {
-
-        let self = this;
-
-        return {
-
-            labels: this.labels,
-
-            datasets: [
-                {
-                    label: 'Rajada (m/s) observadas no intervalo de uma hora.',
-
-                    data: this.dataLeft,
-
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-
-                    borderColor: 'rgba(255,99,132,1)',
-
-                    borderWidth: 2,
-
-                    yAxisId: 'left-y-axis',
-
-                    pointStyle: this._getDirectionImages(this.directions)
-
-                }
-
-            ],
-
-        }
-
-    }
-
-    _setOptions () {
-
-        return {
-
-            scales: {
-
-                yAxes: [
-
-                    {
-                        id: 'left-y-axis',
-
-                        position: 'left',
-
-                        ticks: {beginAtZero: true},
-
-                        scaleLabel: {
-
-                            display: true,
-        
-                            labelString: 'Rajada (m/s)',
-        
-                            fontSize: this.fontSize,
-
-                            position: 'left'
-        
-                        }
-
-                    }
-
-                ]
+  _setOptions() {
+    return {
+      scales: {
+        yAxes: [
+          {
+            id: "left-y-axis",
+            position: "left",
+            ticks: {
+              suggestedMin: this.scale.suggestedMin,
+              suggestedMax: this.scale.suggestedMax,
             },
-
-            tooltips: {
-
-                titleFontSize: 22,
-
-                bodyFontSize: this.fontSize,
-
-                enabled: true
-
+            scaleLabel: {
+              display: true,
+              labelString: "Rajada (m/s)",
+              fontSize: this.fontSize,
+              position: "left",
             },
+          },
+        ],
+      },
 
-            legend: {
+      tooltips: {
+        titleFontSize: 22,
+        bodyFontSize: this.fontSize,
+        enabled: true,
+      },
 
-                labels: {
+      legend: {
+        labels: {
+          fontSize: this.fontSize,
+        },
+      },
+    };
+  }
 
-                    fontSize: this.fontSize
+  getChart() {
+    return new Chart(this.ctx, {
+      type: this.type,
+      data: this.data,
+      options: this.options,
+    });
+  }
 
-                }
+  destroy(chart) {
+    chart.destroy();
+  }
 
-            }
+  _getDirectionImages(directions) {
+    directions = directions ? directions : [];
+    let images = [];
+    let self = this;
 
-        }    
+    directions.forEach(function (element) {
+      let direction = self._createDirection(element);
+      images.push(direction);
+    });
 
+    return images;
+  }
+
+  _createDirection(direction) {
+    if (!isNaN(direction)) {
+      return "circle";
     }
 
-    getChart () {
+    let directionImage = new Image();
 
-        return new Chart(this.ctx, {
+    directionImage.src =
+      process.env.MIX_IMAGES + "direction_" + direction + ".png";
 
-            type: this.type,
-
-            data: this.data,
-
-            options: this.options
-
-        });
-
-    }
-
-    destroy (chart) {
-
-        chart.destroy();
-
-    }
-
-    _getDirectionImages (directions) {
-
-        directions = directions ? directions : [];
-
-        let images = [];
-
-        let self = this;
-
-        directions.forEach(function(element) {
-
-            let direction = self._createDirection(element);
-
-            images.push(direction);
-
-        });
-
-        return images;
-
-    }
-
-    _createDirection (direction) {
-
-        if (!isNaN(direction)) {
-
-            return 'circle';
-
-        }
-
-        let directionImage = new Image();
-
-        directionImage.src = process.env.MIX_IMAGES + 'direction_' + direction + '.png';
-
-        return directionImage;
-
-    }
-
+    return directionImage;
+  }
 }
