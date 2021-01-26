@@ -34,7 +34,7 @@ export class PressureSerialChart {
           backgroundColor: "rgba(255, 255, 255, 0)",
           borderColor: "rgba(100,100,132,20)",
           borderWidth: 2,
-          yAxisID: "right-y-axis",
+          yAxisID: "left-y-axis",
           type: "line",
         },
       ],
@@ -46,8 +46,8 @@ export class PressureSerialChart {
       scales: {
         yAxes: [
           {
-            id: "right-y-axis",
-            position: "right",
+            id: "left-y-axis",
+            position: "left",
             ticks: {
               suggestedMin: 0,
               suggestedMax: this.scale.maxRight,
@@ -56,7 +56,7 @@ export class PressureSerialChart {
               display: true,
               labelString: "Pressão hpa",
               fontSize: this.fontSize,
-              position: "right",
+              position: "left",
             },
           },
         ],
