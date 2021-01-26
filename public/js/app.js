@@ -245,6 +245,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -262,50 +274,63 @@ var TSeco = /*#__PURE__*/function () {
     this.dataLeft = dataLeft;
     this.dataRight = dataRight;
     this.tMaxMin = tMaxMin;
-    this.type = 'bar';
+    this.type = "bar";
     this.ctx = ctx;
     this.fontSize = fontSize ? fontSize : 20;
     this.data = this._setData();
     this.options = this._setOptions();
+    this.suggestedMinTemp = 0;
+    this.suggestedMaxTemp = 0;
   }
 
   _createClass(TSeco, [{
     key: "_setData",
     value: function _setData() {
+      var tmin = this._removeNullValues(this.tMaxMin.tmin);
+
+      this.suggestedMaxTemp = Math.max.apply(Math, _toConsumableArray(this.tMaxMin.tmax)) + 2;
+      this.suggestedMinTemp = Math.min.apply(Math, _toConsumableArray(tmin)) - 2;
       return {
         labels: this.labels,
         datasets: [{
-          label: 'Temperatura de Bulbo Seco (ºC)',
+          label: "Temperatura de Bulbo Seco (ºC)",
           data: this.dataLeft,
-          backgroundColor: 'rgba(255, 255, 255, 0)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: "rgba(255, 255, 255, 0)",
+          borderColor: "rgba(255,99,132,1)",
           borderWidth: 2,
-          yAxisId: 'left-y-axis',
-          type: 'line'
+          yAxisId: "left-y-axis",
+          type: "line"
         }, {
           data: this.dataRight,
-          label: 'Umidade Relativa(%)',
-          yAxisID: 'right-y-axis',
-          backgroundColor: 'rgba(255, 255, 255, 0)',
-          borderColor: 'rgba(100,100,132,20)',
+          label: "Umidade Relativa(%)",
+          yAxisID: "right-y-axis",
+          backgroundColor: "rgba(255, 255, 255, 0)",
+          borderColor: "rgba(100,100,132,20)",
           borderWidth: 2,
-          type: 'line'
+          type: "line"
         }, {
           data: this.tMaxMin.tmax,
-          label: 'Temperatura Máxima (ºC)',
-          yAxisID: 'left-y-axis',
-          backgroundColor: 'rgba(88, 120, 249, 0.5)',
+          label: "Temperatura Máxima (ºC)",
+          yAxisID: "left-y-axis",
+          backgroundColor: "rgba(88, 120, 249, 0.5)",
           borderWidth: 2,
-          type: 'bar'
+          type: "bar"
         }, {
           data: this.tMaxMin.tmin,
-          label: 'Temperatura Mínima (ºC)',
-          yAxisID: 'left-y-axis',
-          backgroundColor: 'rgba(43, 133, 5, 0.5)',
+          label: "Temperatura Mínima (ºC)",
+          yAxisID: "left-y-axis",
+          backgroundColor: "rgba(43, 133, 5, 0.5)",
           borderWidth: 2,
-          type: 'bar'
+          type: "bar"
         }]
       };
+    }
+  }, {
+    key: "_removeNullValues",
+    value: function _removeNullValues(array) {
+      return array.filter(function (element) {
+        return element != null;
+      });
     }
   }, {
     key: "_setOptions",
@@ -313,27 +338,28 @@ var TSeco = /*#__PURE__*/function () {
       return {
         scales: {
           yAxes: [{
-            id: 'left-y-axis',
-            position: 'left',
+            id: "left-y-axis",
+            position: "left",
             ticks: {
-              beginAtZero: true
+              suggestedMin: this.suggestedMinTemp,
+              suggestedMax: this.suggestedMaxTemp
             },
             scaleLabel: {
               display: true,
-              labelString: 'Temperatura (ºC)',
+              labelString: "Temperatura (ºC)",
               fontSize: this.fontSize,
-              position: 'left'
+              position: "left"
             }
           }, {
-            id: 'right-y-axis',
-            position: 'right',
+            id: "right-y-axis",
+            position: "right",
             ticks: {
               beginAtZero: true
             },
             scaleLabel: {
               display: true,
-              labelString: 'Umidade Relativa (%)',
-              position: 'right',
+              labelString: "Umidade Relativa (%)",
+              position: "right",
               fontSize: this.fontSize
             }
           }],
