@@ -2,7 +2,7 @@ let mix = require("laravel-mix");
 
 mix.setPublicPath("./public");
 mix.js("js/src/app.js", "./public/js/");
-mix.js("js/src/app-home.js", "./public/js/");
+mix.js("js/src/app-home.js", "./public/js/app-home-v1.0.js");
 mix.sass("scss/app.scss", "./public/css/");
 mix.browserSync({
   proxy: "localhost",
