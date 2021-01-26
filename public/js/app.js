@@ -878,8 +878,8 @@ var Temperature = /*#__PURE__*/function (_BaseChart) {
   }, {
     key: "loadData",
     value: function loadData(actions) {
-      var initialDate = $('#temperature-ini-date-field').val();
-      var endDate = $('#temperature-end-date-field').val();
+      var initialDate = $("#temperature-ini-date-field").val();
+      var endDate = $("#temperature-end-date-field").val();
       var data = this.getDataHandler();
       data.loadDataByDateInterval(data.dateConvert(initialDate), data.dateConvert(endDate), function (temperature) {
         if (actions) {
