@@ -293,7 +293,7 @@ var TSeco = /*#__PURE__*/function () {
       return {
         labels: this.labels,
         datasets: [{
-          label: "Temperatura de Bulbo Seco (ºC)",
+          label: "Temperatura do ar (ºC)",
           data: this.dataLeft,
           backgroundColor: "rgba(255, 255, 255, 0)",
           borderColor: "rgba(255,99,132,1)",
