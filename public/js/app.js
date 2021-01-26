@@ -281,6 +281,8 @@ var TSeco = /*#__PURE__*/function () {
     this.options = this._setOptions();
     this.suggestedMinTemp = 0;
     this.suggestedMaxTemp = 0;
+    this.suggestedMinRh = 0;
+    this.suggestedMaxRh = 0;
   }
 
   _createClass(TSeco, [{
@@ -290,6 +292,8 @@ var TSeco = /*#__PURE__*/function () {
 
       this.suggestedMaxTemp = Math.max.apply(Math, _toConsumableArray(this.tMaxMin.tmax)) + 2;
       this.suggestedMinTemp = Math.min.apply(Math, _toConsumableArray(tmin)) - 2;
+      this.suggestedMinRh = Math.min.apply(Math, _toConsumableArray(this.dataRight)) - 10;
+      this.suggestedMaxRh = Math.max.apply(Math, _toConsumableArray(this.dataRight)) + 10;
       return {
         labels: this.labels,
         datasets: [{
@@ -354,7 +358,8 @@ var TSeco = /*#__PURE__*/function () {
             id: "right-y-axis",
             position: "right",
             ticks: {
-              beginAtZero: true
+              suggestedMin: this.suggestedMinRh,
+              suggestedMax: this.suggestedMaxRh
             },
             scaleLabel: {
               display: true,

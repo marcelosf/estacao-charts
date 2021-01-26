@@ -13,12 +13,16 @@ export class TSeco {
     this.options = this._setOptions();
     this.suggestedMinTemp = 0;
     this.suggestedMaxTemp = 0;
+    this.suggestedMinRh = 0;
+    this.suggestedMaxRh = 0;
   }
 
   _setData() {
     const tmin = this._removeNullValues(this.tMaxMin.tmin);
     this.suggestedMaxTemp = Math.max(...this.tMaxMin.tmax) + 2;
     this.suggestedMinTemp = Math.min(...tmin) - 2;
+    this.suggestedMinRh = Math.min(...this.dataRight) - 10;
+    this.suggestedMaxRh = Math.max(...this.dataRight) + 10;
 
     return {
       labels: this.labels,
@@ -93,7 +97,10 @@ export class TSeco {
           {
             id: "right-y-axis",
             position: "right",
-            ticks: { beginAtZero: true },
+            ticks: {
+              suggestedMin: this.suggestedMinRh,
+              suggestedMax: this.suggestedMaxRh,
+            },
             scaleLabel: {
               display: true,
               labelString: "Umidade Relativa (%)",
