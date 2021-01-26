@@ -29,15 +29,6 @@ export class PressureSerialChart {
       labels: this.labels,
       datasets: [
         {
-          label: "Pressão Atmosférica(mmgHg)",
-          data: this.dataLeft,
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          borderColor: "rgba(255,99,132,1)",
-          borderWidth: 2,
-          yAxisID: "left-y-axis",
-          type: "line",
-        },
-        {
           label: "Pressão Atmosférica(hpa)",
           data: this.dataRight,
           backgroundColor: "rgba(255, 255, 255, 0)",
@@ -54,20 +45,6 @@ export class PressureSerialChart {
     return {
       scales: {
         yAxes: [
-          {
-            id: "left-y-axis",
-            position: "left",
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: this.scale.maxLeft,
-            },
-            scaleLabel: {
-              display: true,
-              labelString: "Pressão mmgH",
-              fontSize: this.fontSize,
-              position: "left",
-            },
-          },
           {
             id: "right-y-axis",
             position: "right",
