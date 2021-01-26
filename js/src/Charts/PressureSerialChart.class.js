@@ -10,18 +10,15 @@ export class PressureSerialChart {
     this.data = this._setData();
     this.scale = this._setScale();
     this.options = this._setOptions();
+
+    console.log(this.scale);
   }
 
   _setScale() {
-    const suggestedMaxLeft = Math.max(...this.dataLeft);
-    const suggestedMaxRight = Math.max(...this.dataRight);
-    const suggestedMinLeft = Math.min(...this.dataLeft);
-    const suggestedMinRight = Math.max(...this.dataRight);
+    const suggestedMax = Math.max(...this.dataRight) + 10;
+    const suggestedMin = Math.min(...this.dataRight) - 10;
 
-    const maxLeft = suggestedMaxLeft + suggestedMinLeft;
-    const maxRight = suggestedMaxRight + suggestedMinRight;
-
-    return { maxLeft: maxLeft, maxRight: maxRight };
+    return { suggestedMax: suggestedMax, suggestedMin: suggestedMin };
   }
 
   _setData() {
@@ -49,8 +46,8 @@ export class PressureSerialChart {
             id: "left-y-axis",
             position: "left",
             ticks: {
-              suggestedMin: 0,
-              suggestedMax: this.scale.maxRight,
+              suggestedMin: this.scale.suggestedMin,
+              suggestedMax: this.scale.suggestedMax,
             },
             scaleLabel: {
               display: true,
