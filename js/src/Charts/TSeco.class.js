@@ -128,6 +128,7 @@ export class TSeco {
       legend: {
         labels: {
           fontSize: this.fontSize,
+          boxWidth: 10,
         },
       },
     };

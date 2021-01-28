@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <polygon points="
+            70 50,
+            100 100,
+            85 100,
+            85 150,
+            55 150,
+            55 100,
+            40 100
+            " stroke="black" fill="black" transform="rotate(0, 50, 100)" />
+</svg>

@@ -13,8 +13,8 @@ export class PressureSerialChart {
   }
 
   _setScale() {
-    const suggestedMax = Math.max(...this.dataRight) + 10;
-    const suggestedMin = Math.min(...this.dataRight) - 10;
+    const suggestedMax = Math.max(...this.dataRight) + 5;
+    const suggestedMin = Math.min(...this.dataRight) - 5;
 
     return { suggestedMax: suggestedMax, suggestedMin: suggestedMin };
   }
@@ -24,7 +24,7 @@ export class PressureSerialChart {
       labels: this.labels,
       datasets: [
         {
-          label: "Pressão Atmosférica(hpa)",
+          label: "Pressão Atmosférica",
           data: this.dataRight,
           backgroundColor: "rgba(255, 255, 255, 0)",
           borderColor: "rgba(100,100,132,20)",
@@ -49,7 +49,7 @@ export class PressureSerialChart {
             },
             scaleLabel: {
               display: true,
-              labelString: "Pressão hpa",
+              labelString: "Pressão Atmosféricas (hpa)",
               fontSize: this.fontSize,
               position: "left",
             },

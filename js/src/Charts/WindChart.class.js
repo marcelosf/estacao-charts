@@ -25,7 +25,7 @@ export class WindChart {
       labels: this.labels,
       datasets: [
         {
-          label: "Rajada (m/s) observadas no intervalo de uma hora.",
+          label: "Direção e intensidade da Rajada de Vento horária.",
           data: this.dataLeft,
           backgroundColor: "rgba(255, 255, 255, 0.2)",
           borderColor: "rgba(255,99,132,1)",
@@ -50,7 +50,7 @@ export class WindChart {
             },
             scaleLabel: {
               display: true,
-              labelString: "Rajada (m/s)",
+              labelString: "Velocidade do Vento (m/s)",
               fontSize: this.fontSize,
               position: "left",
             },
@@ -108,5 +108,23 @@ export class WindChart {
       process.env.MIX_IMAGES + "direction_" + direction + ".png";
 
     return directionImage;
+  }
+
+  _createSvg() {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+    const polygon = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "polygon"
+    );
+
+    polygon.setAttribute("points", "30 0,60 60,45 60,45 110,15 110,15 60,0 60");
+    polygon.setAttribute("stroke", "black");
+    polygon.setAttribute("fill", "black");
+    polygon.setAttribute("transform", "rotate(0, 50, 0)");
+
+    svg.appendChild(polygon);
+
+    return svg;
   }
 }
