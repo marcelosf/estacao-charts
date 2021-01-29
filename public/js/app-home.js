@@ -146,6 +146,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _plugins_labelline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plugins/labelline */ "./js/src/plugins/labelline.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -163,6 +164,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 var TSeco = /*#__PURE__*/function () {
@@ -184,6 +186,7 @@ var TSeco = /*#__PURE__*/function () {
     this.suggestedMaxTemp = 0;
     this.suggestedMinRh = 0;
     this.suggestedMaxRh = 0;
+    this.plugins = this._getPlugins();
   }
 
   _createClass(TSeco, [{
@@ -241,6 +244,11 @@ var TSeco = /*#__PURE__*/function () {
     key: "_setOptions",
     value: function _setOptions() {
       return {
+        plugins: {
+          labelline: {
+            applyTo: "line"
+          }
+        },
         scales: {
           yAxes: [{
             id: "left-y-axis",
@@ -289,12 +297,18 @@ var TSeco = /*#__PURE__*/function () {
       };
     }
   }, {
+    key: "_getPlugins",
+    value: function _getPlugins() {
+      return [_plugins_labelline__WEBPACK_IMPORTED_MODULE_1__.labelline];
+    }
+  }, {
     key: "getChart",
     value: function getChart() {
       return new (chart_js__WEBPACK_IMPORTED_MODULE_0___default())(this.ctx, {
         type: this.type,
         data: this.data,
-        options: this.options
+        options: this.options,
+        plugins: this.plugins
       });
     }
   }, {
@@ -1281,6 +1295,30 @@ function windInitialize() {
     window.windDaily = _Controllers_Wind_class__WEBPACK_IMPORTED_MODULE_3__.WindDaily.getChart(wind.date, wind.wind, wind.direction, ctx, 12);
   });
 }
+
+/***/ }),
+
+/***/ "./js/src/plugins/labelline.js":
+/*!*************************************!*\
+  !*** ./js/src/plugins/labelline.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "labelline": () => /* binding */ labelline
+/* harmony export */ });
+var labelline = {
+  id: "labelline",
+  afterLayout: function afterLayout(chart, options) {
+    var ctx = chart.ctx;
+    var chartOptions = chart.options;
+    console.log(chart);
+    ctx.save();
+    ctx.restore();
+  }
+};
 
 /***/ }),
 

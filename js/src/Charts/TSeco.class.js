@@ -1,4 +1,5 @@
 import Chart from "chart.js";
+import { labelline } from "../plugins/labelline";
 
 export class TSeco {
   constructor(labels, dataLeft, dataRight, tMaxMin, ctx, fontSize = false) {
@@ -15,6 +16,7 @@ export class TSeco {
     this.suggestedMaxTemp = 0;
     this.suggestedMinRh = 0;
     this.suggestedMaxRh = 0;
+    this.plugins = this._getPlugins();
   }
 
   _setData() {
@@ -77,6 +79,9 @@ export class TSeco {
 
   _setOptions() {
     return {
+      plugins: {
+        labelline: { applyTo: "line" },
+      },
       scales: {
         yAxes: [
           {
@@ -134,11 +139,16 @@ export class TSeco {
     };
   }
 
+  _getPlugins() {
+    return [labelline];
+  }
+
   getChart() {
     return new Chart(this.ctx, {
       type: this.type,
       data: this.data,
       options: this.options,
+      plugins: this.plugins,
     });
   }
 
