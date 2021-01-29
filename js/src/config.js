@@ -12,7 +12,7 @@ const config = {
     PRECIPITATION_INI_DATE_FIELD:   '#precipitation-ini-date-field',
     PRECIPITATION_END_DATE_FIELD:   '#precipitation-end-date-field',
     CHART_LABLE_SIZE:               18, 
-    IMAGES:                         "http://10.60.0.57/consulta/charts/images/"
+    IMAGES:                         "http://www.estacao.iag.usp.br/consulta/charts/images/"
 
 }
 
