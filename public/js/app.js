@@ -1612,7 +1612,6 @@ var labelline = {
   afterLayout: function afterLayout(chart, options) {
     var ctx = chart.ctx;
     var chartOptions = chart.options;
-    console.log(chart);
     ctx.save();
     ctx.restore();
   }
