@@ -466,7 +466,7 @@ var WindChart = /*#__PURE__*/function () {
       }
 
       var directionImage = new Image();
-      directionImage.src = "http://localhost:3002/consulta/charts/images/" + "direction_" + direction + ".png";
+      directionImage.src = "http://www.estacao.iag.usp.br/consulta/charts/images/" + "direction_" + direction + ".png";
       return directionImage;
     }
   }, {
