@@ -31,7 +31,13 @@ export class Wind extends BaseChart {
   static getChart(labels, dataLeft, directions, ctx, fontSize) {
     let labelsFormatted = this.dateToBRFormat(labels, true);
 
-    let windChart = new WindChart(labelsFormatted, dataLeft, directions, ctx, fontSize);
+    let windChart = new WindChart(
+      labelsFormatted,
+      dataLeft,
+      directions,
+      ctx,
+      fontSize
+    );
 
     return windChart.getChart();
   }
@@ -76,8 +82,8 @@ export class Wind extends BaseChart {
 export class WindDaily extends Wind {
   static _getPeriod() {
     const format = "DD/MM/YYYY";
-    let iniDate = moment().add(-1, "days").format(format);
-    let endDate = moment().format(format);
+    let iniDate = moment().add(-1, "days").format("DD/MM/YYYY");
+    let endDate = moment().format("DD/MM/YYYY HH:mm:ss");
 
     return { ini: iniDate, end: endDate };
   }

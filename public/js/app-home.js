@@ -810,9 +810,8 @@ var TemperatureInterval = /*#__PURE__*/function (_Temperature) {
   _createClass(TemperatureInterval, null, [{
     key: "loadData",
     value: function loadData(actions) {
-      var dateFormat = "DD/MM/YYYY";
-      var initialDate = moment().add(-1, "days").format(dateFormat);
-      var endDate = moment().format(dateFormat);
+      var initialDate = moment().add(-1, "days").format("DD/MM/YYYY");
+      var endDate = moment().format("DD/MM/YYYY HH:mm:ss");
       var data = this.getDataHandler();
       data.loadSerialByDateInterval(data.dateConvert(initialDate), data.dateConvert(endDate), function (temperature) {
         if (actions) {
@@ -962,8 +961,8 @@ var WindDaily = /*#__PURE__*/function (_Wind) {
     key: "_getPeriod",
     value: function _getPeriod() {
       var format = "DD/MM/YYYY";
-      var iniDate = moment().add(-1, "days").format(format);
-      var endDate = moment().format(format);
+      var iniDate = moment().add(-1, "days").format("DD/MM/YYYY");
+      var endDate = moment().format("DD/MM/YYYY HH:mm:ss");
       return {
         ini: iniDate,
         end: endDate
@@ -1036,7 +1035,7 @@ var Data = /*#__PURE__*/function () {
     key: "getDataByDateInterval",
     value: function getDataByDateInterval(initialDate, endDate, actions) {
       $.get("consulta/charts/loadtseco.php", {
-        route: 'dateInterval',
+        route: "dateInterval",
         initialDate: initialDate,
         endDate: endDate
       }).done(function (data) {
@@ -1048,7 +1047,7 @@ var Data = /*#__PURE__*/function () {
     key: "getSerialByDateInterval",
     value: function getSerialByDateInterval(initialDate, endDate, actions) {
       $.get("consulta/charts/loadtseco.php", {
-        route: 'serialInterval',
+        route: "serialInterval",
         initialDate: initialDate,
         endDate: endDate
       }).done(function (data) {
@@ -1060,7 +1059,7 @@ var Data = /*#__PURE__*/function () {
     key: "getSerialPressureByDateInterval",
     value: function getSerialPressureByDateInterval(date, actions) {
       $.post("consulta/charts/loadtseco.php", {
-        route: 'pressureHpaAndMmgh',
+        route: "pressureHpaAndMmgh",
         date: date
       }).done(function (data) {
         var response = JSON.parse(data);
@@ -1070,12 +1069,12 @@ var Data = /*#__PURE__*/function () {
   }, {
     key: "dateConvert",
     value: function dateConvert(date) {
-      return date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1');
+      return date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1");
     }
   }, {
     key: "dateFormat",
     value: function dateFormat(date, full) {
-      var replace = full ? '$3/$2/$1$4' : '$3/$2/$1';
+      var replace = full ? "$3/$2/$1$4" : "$3/$2/$1";
       return date.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, replace);
     }
   }, {
@@ -1094,7 +1093,7 @@ var Data = /*#__PURE__*/function () {
     key: "getPressure",
     value: function getPressure(date, actions) {
       $.post("consulta/charts/loadtseco.php", {
-        route: 'pressure',
+        route: "pressure",
         date: date
       }).done(function (data) {
         var pressure = JSON.parse(data);
@@ -1117,7 +1116,7 @@ var Data = /*#__PURE__*/function () {
     key: "getWind",
     value: function getWind(date, actions) {
       $.get("consulta/charts/loadtseco.php", {
-        route: 'wind',
+        route: "wind",
         initialDate: date.ini,
         endDate: date.end
       }).done(function (data) {
@@ -1141,7 +1140,7 @@ var Data = /*#__PURE__*/function () {
     key: "getPrecipitation",
     value: function getPrecipitation(date, actions) {
       $.get("consulta/charts/loadtseco.php", {
-        route: 'precipitation',
+        route: "precipitation",
         initialDate: date.ini,
         endDate: date.end
       }).done(function (data) {
