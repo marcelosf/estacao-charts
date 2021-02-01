@@ -1,6 +1,7 @@
 <?php
 
-class Humidity {
+class Humidity
+{
 
     protected $pressure;
 
@@ -14,15 +15,14 @@ class Humidity {
 
     protected $humidityInterval = array();
 
-    
+
     public function __construct($humidityData)
     {
 
         $this->data = $humidityData;
-
     }
 
-    public function getHumidityData() 
+    public function getHumidityData()
     {
 
         foreach ($this->data as $d) {
@@ -30,11 +30,11 @@ class Humidity {
             $this->setVariables($d);
 
             $this->humidityInterval[] = $this->getHumidity();
-
         }
 
-        return $this->humidityInterval;
+        $this->humidityInterval = $this->normalize($this->humidityInterval);
 
+        return $this->humidityInterval;
     }
 
     public function getHumidity()
@@ -53,7 +53,6 @@ class Humidity {
         $ewpt = $this->getEwpt($fcorr);
 
         return ($ewptd / $ewpt) * 100;
-
     }
 
     protected function setVariables($variables)
@@ -66,50 +65,49 @@ class Humidity {
         $this->tseco = $variables['tseco'];
 
         $this->tumido = $variables['tumido'];
-
     }
 
-  
+
     protected function getP0c()
     {
 
         return $this->pressure * (1 - 0.000163 * $this->tempBar);
-
     }
 
     protected function getPNormal($p0c)
     {
 
         return ($p0c - 1.3) * 1013.25 / 760;
-
     }
 
     protected function getfcorr($pNormal)
     {
 
         return 1.0016 + (0.00000315 * $pNormal - (0.074 / $pNormal));
-
     }
 
     protected function getEwptw($fcorr)
     {
 
         return $fcorr * pow(6.112, (17.62 * $this->tumido / (243.12 + $this->tumido)));
-
     }
 
     protected function getEwptd($ewptw, $pNormal)
     {
 
         return $ewptw - 0.000653 * (1 + 0.000944 * $this->tumido) * $pNormal * ($this->tseco - $this->tumido);
-
     }
 
     protected function getEwpt($fcorr)
     {
 
         return $fcorr * pow(6.112, (17.62 * $this->tseco / (243.12 + $this->tseco)));
-
     }
 
+    protected function normalize($humidity)
+    {
+        return array_map(function ($item) {
+            return $item > 100 ? 100 : $item;
+        }, $humidity);
+    }
 }
