@@ -46,7 +46,7 @@ class Humidity
 
         $fcorr = $this->getfcorr($pNormal);
 
-        $ewptw = $this->getEwpt($fcorr);
+        $ewptw = $this->getEwptw($fcorr);
 
         $ewptd = $this->getEwptd($ewptw, $pNormal);
 
