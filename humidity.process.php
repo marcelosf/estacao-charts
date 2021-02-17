@@ -42,17 +42,15 @@ class Humidity
 
         $p0c = $this->getP0c();
 
-        $pNormal = $this->getPNormal($p0c);
+        $pHpa = $this->getPHpa($p0c);
 
-        $fcorr = $this->getfcorr($pNormal);
+        $e = $this->getEp($this->tumido) - $pHpa * ($this->tseco - $this->tumido) * 0.000653 * (1.0 + (0.000944 * $this->tumido ));
 
-        $ewptw = $this->getEwptw($fcorr);
+        $es = $this->getEp($this->tseco);
 
-        $ewptd = $this->getEwptd($ewptw, $pNormal);
+        $rh = ($e/$es) * 100;
 
-        $ewpt = $this->getEwpt($fcorr);
-
-        return ($ewptd / $ewpt) * 100;
+        return round($rh, 1);
     }
 
     protected function setVariables($variables)
@@ -67,17 +65,27 @@ class Humidity
         $this->tumido = $variables['tumido'];
     }
 
-
     protected function getP0c()
     {
 
         return $this->pressure * (1 - 0.000163 * $this->tempBar);
     }
 
-    protected function getPNormal($p0c)
+    protected function getPHpa($p0c)
     {
 
         return ($p0c - 1.3) * 1013.25 / 760;
+    }
+
+    protected function getEp($temp)
+    {
+        if ($temp == 0) {
+            return 0;
+        }
+
+        $ep = 1.0044*6.112*exp((17.62 * $temp )/($temp + 243.12));
+
+        return $ep;
     }
 
     protected function getfcorr($pNormal)
