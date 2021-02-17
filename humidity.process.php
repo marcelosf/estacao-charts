@@ -88,30 +88,6 @@ class Humidity
         return $ep;
     }
 
-    protected function getfcorr($pNormal)
-    {
-
-        return 1.0016 + (0.00000315 * $pNormal - (0.074 / $pNormal));
-    }
-
-    protected function getEwptw($fcorr)
-    {
-
-        return $fcorr * pow(6.112, (17.62 * $this->tumido / (243.12 + $this->tumido)));
-    }
-
-    protected function getEwptd($ewptw, $pNormal)
-    {
-
-        return $ewptw - 0.000653 * (1 + 0.000944 * $this->tumido) * $pNormal * ($this->tseco - $this->tumido);
-    }
-
-    protected function getEwpt($fcorr)
-    {
-
-        return $fcorr * pow(6.112, (17.62 * $this->tseco / (243.12 + $this->tseco)));
-    }
-
     protected function normalize($humidity)
     {
         return array_map(function ($item) {
