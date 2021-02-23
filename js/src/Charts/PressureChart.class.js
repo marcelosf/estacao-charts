@@ -1,140 +1,113 @@
-import Chart from 'chart.js';
+import Chart from "chart.js";
 
 export class PressureChart {
+  constructor(labels, data, ctx) {
+    this.labels = labels;
 
-    constructor (labels, data, ctx) {
+    this.pressure = data;
 
-        this.labels = labels;
+    this.ctx = ctx;
 
-        this.pressure = data;
+    this.type = "line";
 
-        this.ctx = ctx;
+    this.data = this._setData();
+    this.scale = this._setScale();
+    this.options = this._setOptions();
+  }
 
-        this.type = 'line'
+  _setScale() {
+    const suggestedMax = Math.max(...this.pressure) + 5;
+    const suggestedMin = Math.min(...this.pressure) - 5;
 
-        this.data = this._setData();
+    return { suggestedMax: suggestedMax, suggestedMin: suggestedMin };
+  }
 
-        this.options = this._setOptions();
+  _setData() {
+    return {
+      labels: this.labels,
 
-    }
+      datasets: [
+        {
+          label: "Pressão Atmosférica (hpa)",
 
-    _setData () {
+          data: this.pressure,
 
-        return {
+          backgroundColor: "rgba(255, 255, 255, 0)",
 
-            labels: this.labels,
+          borderColor: "rgba(100,100,132,20)",
 
-            datasets: [
-                {
-                    label: 'Pressão Atmosférica (mmHg)',
+          borderWidth: 2,
 
-                    data: this.pressure,
+          yAxisId: "left-y-axis",
 
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          showLines: false,
+        },
+      ],
+    };
+  }
 
-                    borderColor: 'rgba(255,99,132,1)',
+  _setOptions() {
+    return {
+      scales: {
+        yAxes: [
+          {
+            id: "left-y-axis",
 
-                    borderWidth: 2,
+            position: "left",
 
-                    yAxisId: 'left-y-axis',
-
-                    showLines: false
-                }
-            ]
-
-        }
-
-    }
-
-    _setOptions () {
-
-        return {
-
-            scales: {
-
-                yAxes: [
-
-                    {
-                        id: 'left-y-axis',
-
-                        position: 'left',
-
-                        ticks: {beginAtZero: true},
-
-                        scaleLabel: {
-
-                            display: true,
-        
-                            labelString: 'Pressão Atmosférica (mmHg)',
-        
-                            fontSize: 20,
-
-                            position: 'left'
-        
-                        }
-
-                    }
-
-                ],
-
-                xAxes: [
-
-                    {
-
-                        scaleLabel: {
-
-                            fontSize: 20
-
-                        }
-
-                    }
-
-                ]
-
+            ticks: {
+              suggestedMin: this.scale.suggestedMin,
+              suggestedMax: this.scale.suggestedMax,
             },
 
-            tooltips: {
+            scaleLabel: {
+              display: true,
 
-                titleFontSize: 22,
+              labelString: "Pressão Atmosférica (hpa)",
 
-                bodyFontSize: 20,
+              fontSize: 20,
 
-                enabled: true
-
+              position: "left",
             },
+          },
+        ],
 
-            legend: {
+        xAxes: [
+          {
+            scaleLabel: {
+              fontSize: 20,
+            },
+          },
+        ],
+      },
 
-                labels: {
+      tooltips: {
+        titleFontSize: 22,
 
-                    fontSize: 20
+        bodyFontSize: 20,
 
-                }
+        enabled: true,
+      },
 
-            }
+      legend: {
+        labels: {
+          fontSize: 20,
+        },
+      },
+    };
+  }
 
-        }    
+  getChart() {
+    return new Chart(this.ctx, {
+      type: this.type,
 
-    }
+      data: this.data,
 
-    getChart () {
+      options: this.options,
+    });
+  }
 
-        return new Chart(this.ctx, {
-
-            type: this.type,
-
-            data: this.data,
-
-            options: this.options
-
-        });
-
-    }
-
-    destroy (chart) {
-
-        chart.destroy();
-
-    }
-
+  destroy(chart) {
+    chart.destroy();
+  }
 }
